@@ -1,0 +1,19 @@
+﻿html,
+body {
+    margin: 0;
+    height: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 650px;
+    margin: 0 auto;
+    justify-content:center;
+    height: 100%;
+}
+
+#ErrorMsg {
+    font-size: 10px;
+    color: red;
+}
