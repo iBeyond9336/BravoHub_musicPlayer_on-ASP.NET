@@ -25,7 +25,7 @@
             </div>
             <div class="right_panel">
                 <h2>Login</h2>
-                <h5>If you dont have a account...<a href="Register.aspx">register here!</a></h5>
+                <h5>If you dont have a account...<a href="RegisterModule/RegisterPage.aspx">register here!</a></h5>
                 <input type="text" class="username" placeholder="UserName" runat="server" id="LoginUsername"/>
                 <input type="password" class="password" placeholder="Password" runat="server" id="LoginPassword"/>
                 <div class="login_fom_bottom">
