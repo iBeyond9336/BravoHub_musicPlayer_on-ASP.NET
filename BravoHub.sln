@@ -8,6 +8,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C02F3E79-3F7B-4840-B0E2-342C1F9DB715}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		loginstyles.css = loginstyles.css
+		img\preview.gif = img\preview.gif
 	EndProjectSection
 EndProject
 Global
