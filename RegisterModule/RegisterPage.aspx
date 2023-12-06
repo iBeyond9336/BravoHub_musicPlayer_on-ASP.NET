@@ -17,7 +17,7 @@
         <input id="RegisterPassword2" type="password" placeholder="confirm password" runat="server"/>
         <div id="ErrorMsg" runat="server"></div>
 
-        <asp:Button ID="Button1" runat="server" Text="Sign Up!" OnClick="Button1_Click" />
+        <asp:Button ID="MainButton" runat="server" Text="Sign Up!" OnClick="Button1_Click" />
     </form>
 </body>
 </html>
