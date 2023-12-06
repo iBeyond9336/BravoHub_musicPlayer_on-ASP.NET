@@ -12,15 +12,34 @@ namespace BravoHubTest {
     public class LoginPageTest {
 
         [Test]
-        public void LoginButtonClick_ValidUserCredentials_UserLogsIn() {
+        public void LoginButtonClick_NoEmptyUserNameAndPassword_ValidCredentials() {
             LoginPageStub loginPage = new LoginPageStub();
             loginPage.SetUsername("edwin0614");
             loginPage.SetPassword("12345678");
 
             bool result = loginPage.ValidateUserCredentials();
 
-
             Assert.That(result, "Test Fail");
+        }
+
+        [Test]
+        public void LoginButtonClick_EmptyUserName_InvalidCredentials() {
+            LoginPageStub loginPage = new LoginPageStub();
+            loginPage.SetPassword("12345678");
+
+            bool result = loginPage.ValidateUserCredentials();
+
+            Assert.That(!result, "This test should fail because username is empty");
+        }
+
+        [Test]
+        public void LoginButtonClick_EmptyPassword_InvalidCredentials() {
+            LoginPageStub loginPage = new LoginPageStub();
+            loginPage.SetUsername("edwin0614");
+
+            bool result = loginPage.ValidateUserCredentials();
+
+            Assert.That(!result, "This test should fail because password is empty");
         }
 
         private class LoginPageStub : LoginPage {
