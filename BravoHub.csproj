@@ -68,7 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="LoginPage.aspx" />
+    <Content Include="LoginModule\LoginPage.aspx" />
+    <Content Include="LoginModule\loginstyles.css" />
+    <Content Include="LoginModule\preview.gif" />
     <Content Include="RegisterModule\RegisterPage.aspx" />
     <Content Include="RegisterModule\registerStyles.css" />
     <Content Include="Web.config" />
@@ -77,11 +79,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="LoginPage.aspx.cs">
+    <Compile Include="LoginModule\LoginPage.aspx.cs">
       <DependentUpon>LoginPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="LoginPage.aspx.designer.cs">
+    <Compile Include="LoginModule\LoginPage.aspx.designer.cs">
       <DependentUpon>LoginPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -8,9 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C02F3E79-3F7B-4840-B0E2-342C1F9DB715}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
-		loginstyles.css = loginstyles.css
-		img\preview.gif = img\preview.gif
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BravoHubTest", "BravoHubTest\BravoHubTest.csproj", "{1D273171-924C-445B-A4CA-F88DDD739852}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,6 +22,10 @@ Global
 		{CF7BA3E1-74B4-4FB9-9FEB-CEAD709B728B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF7BA3E1-74B4-4FB9-9FEB-CEAD709B728B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF7BA3E1-74B4-4FB9-9FEB-CEAD709B728B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D273171-924C-445B-A4CA-F88DDD739852}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D273171-924C-445B-A4CA-F88DDD739852}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D273171-924C-445B-A4CA-F88DDD739852}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D273171-924C-445B-A4CA-F88DDD739852}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
