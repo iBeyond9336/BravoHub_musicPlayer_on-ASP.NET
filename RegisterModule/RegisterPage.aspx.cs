@@ -7,8 +7,11 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace BravoHub {
-    public partial class RegiterPage : System.Web.UI.Page {
-        private const string LOGIN_PAGE_URL = "../LoginPage.aspx";
+    public partial class RegiterPage : Page {
+        private const string LOGIN_PAGE_URL = "../LoginModule/LoginPage.aspx";
+        protected const string GO_BACK_BTN_TEXT = "Go back to Login Page";
+        private const string SIGN_UP_BTN_TEXT = "Sign Up!";
+
         protected void Page_Load(object sender, EventArgs e) {
 
         }
@@ -18,7 +21,7 @@ namespace BravoHub {
             if (result) {
                 // Register the user in the DB
                 ErrorMsg.InnerText = "Registered!";
-                Button1.Text = "Go back to Login Page";
+                MainButton.Text = GO_BACK_BTN_TEXT;
                 return;
             }
 
@@ -26,19 +29,19 @@ namespace BravoHub {
             ErrorMsg.InnerText = "Oops something happen";
         }
 
-        private bool RegisterNewUser() {
-            if(Button1.Text == "Go back to Login Page") {
+        protected bool RegisterNewUser() {
+            if(MainButton.Text == GO_BACK_BTN_TEXT) {
                 // go back to Login Page
                 Response.Redirect(LOGIN_PAGE_URL);
                 return true;
-            }
-
-            if (RegisterUsername.Value == string.Empty) {
-                return false;
-            } else if (RegisterPassword1.Value == string.Empty) {
-                return false;
-            } else if (RegisterPassword1.Value != RegisterPassword2.Value) {
-                return false;
+            } else  if(MainButton.Text == SIGN_UP_BTN_TEXT) {
+                if (RegisterUsername.Value == string.Empty) {
+                    return false;
+                } else if (RegisterPassword1.Value == string.Empty) {
+                    return false;
+                } else if (RegisterPassword1.Value != RegisterPassword2.Value) {
+                    return false;
+                }
             }
 
             return true;
