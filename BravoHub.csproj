@@ -66,9 +66,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="img\1.gif" />
+    <Content Include="img\2.gif" />
+    <Content Include="img\3.gif" />
+    <Content Include="img\bg0.png" />
+    <Content Include="img\icons8-back-30.png" />
+    <Content Include="img\icons8-next-30.png" />
+    <Content Include="img\icons8-notification-48.png" />
+    <Content Include="img\icons8-play-50.png" />
+    <Content Include="img\preview.gif" />
     <Content Include="LoginModule\LoginPage.aspx" />
     <Content Include="LoginModule\loginstyles.css" />
     <Content Include="LoginModule\preview.gif" />
+    <Content Include="Player\MediaPlayer.html" />
+    <Content Include="Player\MediaPlayer.js" />
+    <Content Include="Player\styles.css" />
     <Content Include="RegisterModule\RegisterPage.aspx" />
     <Content Include="RegisterModule\registerStyles.css" />
     <Content Include="Web.config" />
@@ -106,6 +118,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="backgroundMusic\" />
     <Folder Include="Models\" />
+    <Folder Include="Player\mp3\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

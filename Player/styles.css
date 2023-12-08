@@ -1,0 +1,247 @@
+﻿/* Variables */
+:root {
+    --musicbar-color: white;
+    --musicbtn-color: #b3b3b3;
+    --main-start-color: #303f4e;
+    --main-end-color: #121212;
+    --card-background: #181818;
+    --primarybtn-size: 40px;
+    --secondarybtn-size: 30px;
+    --card-borderradius: 12px;
+    --display-card-btn: none;
+}
+
+/* General Page styling */
+html,
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 70px auto;
+    grid-template-rows: auto 85px;
+}
+
+/* Side bar */
+aside {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    min-width: 70px;
+    min-width: 100%;
+    height: auto;
+    background-color: black;
+}
+
+/* Main */
+main {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    padding: 20px;
+    background: linear-gradient(0deg, #121212, #303F4E);
+    overflow: auto;
+}
+
+header {
+    width: 100%;
+    height: 6%;
+    display: flex;
+    justify-content: space-between;
+    & > section[title=header-btns]
+
+{
+    width: 65px;
+    display: flex;
+    justify-content: space-between;
+}
+
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: max(12%, 170px) max(12%, 170px) max(12%, 170px) max(12%, 170px);
+    grid-template-rows: max(26%, 170px) max(26%, 170px) max(26%, 170px) max(26%, 170px) max(26%, 170px);
+    gap: 20px 20px;
+    margin-top: 20px;
+}
+
+.go-back {
+    width: 22px;
+    & > img
+
+{
+    background-color: black;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+}
+
+div[title=card] {
+    flex-direction: column;
+    display: flex;
+    background-color: var(--card-background);
+    transition: transform 0.3s ease;
+    border-radius: var(--card-borderradius);
+    align-items: center;
+    padding-top: 20px;
+    & > div[class=img-container]
+
+{
+    width: 85%;
+}
+
+& > div[class=card-text] {
+    color: var(--musicbar-color);
+    min-width: max(76%, 126px);
+    position: relative;
+    & > button
+
+{
+    display: var(--display-card-btn);
+    position: absolute;
+    right: 10px;
+    top: 35px;
+}
+
+}
+}
+
+div[title=card]:hover {
+    --card-background: #282828;
+    transform: scale(1.05);
+    & > div[class=card-text] > button
+
+{
+    --display-card-btn: block;
+}
+
+}
+
+img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+/* footer */
+footer {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    & > section[class=album]
+
+{
+    flex-grow: 1;
+}
+
+& > section[class=control] {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    & > section[title=btn-panel]
+
+{
+    align-self: center;
+    display: flex;
+    align-items: baseline;
+    min-width: 120px;
+    justify-content: space-between;
+}
+
+}
+
+& > section[class=icons] {
+    flex-grow: 1;
+}
+
+}
+
+section[title=audio-panel] {
+    display: flex;
+    color: white;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 14px;
+    min-width: 43vw;
+}
+
+
+div#current-time,
+div#total-time {
+    font-size: 0.70rem;
+    max-height: 18px;
+}
+
+/* Progress bar styling */
+
+.pb-border,
+.progressbar {
+    border-radius: 20px;
+}
+
+.pb-border {
+    &:hover
+
+{
+    --musicbar-color: green;
+}
+
+flex-basis: 37vw;
+height: 4px;
+background-color: #4d4d4d;
+}
+
+.progressbar {
+    &:hover
+
+{
+    --musicbar-color: green;
+}
+
+background-color: var(--musicbar-color);
+height: inherit;
+width: 0%;
+}
+
+button {
+    border: 0;
+    border-radius: 100%;
+    padding: 0;
+    background-color: var(--musicbtn-color);
+    &[class=start]
+
+{
+    font-size: 0.75rem;
+    height: var(--primarybtn-size);
+    width: var(--primarybtn-size);
+    transition: transform 0.3 ease;
+}
+
+&[class=start]:active {
+    transform: scale(0.925);
+}
+
+&[class=reset],
+&[class=next] {
+    font-size: 0.55rem;
+    height: var(--secondarybtn-size);
+    width: var(--secondarybtn-size);
+}
+
+    &[class=start]:hover,
+    &[class=reset]:hover,
+    &[class=next]:hover {
+        --musicbtn-color: white;
+    }
+
+    &[class=reset]:active,
+    &[class=next]:active {
+        --musicbtn-color: #b3b3b3;
+    }
+}

@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sound Player</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="MediaPlayer.js"></script>
+</head>
+<body onload="initJSVariables();">
+    <aside></aside>
+    <main>
+        <header>
+            <section title="header-btns">
+                <div class="go-back">
+                    <img src="../img/icons8-back-30.png" alt="go back">
+                </div>
+                <div class="go-back">
+                    <img src="../img/icons8-next-30.png" alt="next">
+                </div>
+            </section>
+            <section title="user-info">
+                <div>install app</div>
+                <div class="notification">
+                    <img src="../img/icons8-notification-48.png" alt="notification">
+                </div>
+                <div></div>
+            </section>
+        </header>
+        <div class="grid-container">
+            <div title="card">
+                <div class="img-container">
+                    <img src="../img/bg0.png" alt="image1">
+                </div>
+                <div class="card-text">
+                    <h3>Title</h3>
+                    <p>info</p>
+                    <button id="playBtn" class="start" onclick="toogleStartPauseBtn();">Play</button>
+                </div>
+            </div>
+            <div title="card">
+                <div class="img-container">
+                    <img src="../img/bg0.png" alt="image1">
+                </div>
+                <div class="card-text">
+                    <h3>Title</h3>
+                    <p>info</p>
+                    <button id="playBtn" class="start" onclick="toogleStartPauseBtn();">Play</button>
+                </div>
+            </div>
+            <div title="card">
+                <div class="img-container">
+                    <img src="../img/bg0.png" alt="image1">
+                </div>
+                <div class="card-text">
+                    <h3>Title</h3>
+                    <p>info</p>
+                </div>
+            </div>
+            <div title="card">
+                <div class="img-container">
+                    <img src="../img/bg0.png" alt="image1">
+                </div>
+                <div class="card-text">
+                    <h3>Title</h3>
+                    <p>info</p>
+                </div>
+            </div>
+            <div title="card">
+                <div class="img-container">
+                    <img src="../img/bg0.png" alt="image1">
+                </div>
+                <div class="card-text">
+                    <h3>Title</h3>
+                    <p>info</p>
+                </div>
+            </div>
+            <div title="card">
+                <div class="img-container">
+                    <img src="../img/bg0.png" alt="image1">
+                </div>
+                <div class="card-text">
+                    <h3>Title</h3>
+                    <p>info</p>
+                </div>
+            </div>
+            <div title="card">
+                <div class="img-container">
+                    <img src="../img/bg0.png" alt="image1">
+                </div>
+                <div class="card-text">
+                    <h3>Title</h3>
+                    <p>info</p>
+                </div>
+            </div>
+            <div title="card">
+                <div class="img-container">
+                    <img src="../img/bg0.png" alt="image1">
+                </div>
+                <div class="card-text">
+                    <h3>Title</h3>
+                    <p>info</p>
+                </div>
+            </div>
+            <div title="card">
+                <div class="img-container">
+                    <img src="../img/bg0.png" alt="image1">
+                </div>
+                <div class="card-text">
+                    <h3>Title</h3>
+                    <p>info</p>
+                </div>
+            </div>
+            <div title="card">
+                <div class="img-container">
+                    <img src="../img/bg0.png" alt="image1">
+                </div>
+                <div class="card-text">
+                    <h3>Title</h3>
+                    <p>info</p>
+                </div>
+            </div>
+            <div title="card">
+                <div class="img-container">
+                    <img src="../img/bg0.png" alt="image1">
+                </div>
+                <div class="card-text">
+                    <h3>Title</h3>
+                    <p>info</p>
+                </div>
+            </div>
+            <div title="card">
+                <div class="img-container">
+                    <img src="../img/bg0.png" alt="image1">
+                </div>
+                <div class="card-text">
+                    <h3>Title</h3>
+                    <p>info</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <section class="album"></section>
+        <section class="control">
+            <section title="btn-panel">
+                <button class="reset" onclick="reset();">reset</button>
+                <button id="playBtn" class="start" onclick="toogleStartPauseBtn();">Play</button>
+                <button class="next">next</button>
+            </section>
+            <section title="audio-panel">
+                <audio id="audioFile" autoplay src="./mp3/music0.mp3"></audio>
+                <div id="current-time">--:--</div>
+                <div class="pb-border">
+                    <div id="pb" class="progressbar"></div>
+                </div>
+                <div id="total-time">--:--</div>
+            </section>
+        </section>
+        <section class="icons"></section>
+    </footer>
+</body>
+</html>
