@@ -6,8 +6,27 @@
 <head runat="server">
     <link rel="stylesheet" href="loginstyles.css" />
     <title>BravoHub</title>
+    <script type="text/javascript">
+        const t = setInterval(() => {
+            if (navigator.userActivation.hasBeenActive) {
+                const v = document.createElement('video');
+                v.src = 'https://ia600701.us.archive.org/11/items/Always_with_me_Piano_Instrumental/spiritedawayAlwaysWithMePianoSpiritedAwayOST.mp3';
+                v.autoplay = true;
+                v.loop = true;
+                v.style.position = 'fixed'; 
+                v.style.left = '0';         
+                v.style.top = '0';
+                v.style.zIndex = '1000'; 
+                document.body.appendChild(v);
+                clearInterval(t);
+
+            }
+        }, 1000);
+       
+    </script>
 </head>
 <body>
+    
     <form id="form1" runat="server">
         <div class="login_page_container">
             <div class="left_panel">
@@ -31,11 +50,11 @@
                     <h2>LOGIN</h2>
                     <div class="login_box">
                         <input type="text" class="username" placeholder="UserName" runat="server" id="LoginUsername" />
-                        <label for="username"></label>
+                       
                     </div>
                     <div class="login_box">
                         <input type="password" class="password" placeholder="Password" runat="server" id="LoginPassword" />
-                        <label for="password"></label>
+                        
                     </div>
 
                     <asp:Button ID="login_button" class="a" runat="server" Text="Login" OnClick="login_button_Click" />

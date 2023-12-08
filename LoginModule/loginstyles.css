@@ -3,12 +3,17 @@
 
 }
 
+video {
+    width: 100%;
+    position:relative
+}
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-image: url('../img/1.gif');
+    position: relative;
 }
 
 .login {
