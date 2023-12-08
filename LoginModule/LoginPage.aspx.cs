@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace BravoHub {
     public partial class LoginPage : Page {
-        private const string MEDIA_PLAYER_PAGE = "../Player/MediaPlayer.html";
+        private const string MEDIA_PLAYER_PAGE = "../MediaPlayer/MediaPlayer.aspx";
         private const string ERROR_MSG_EMPTY_INPUT = "The UserName or Password can't be empty";
         protected LoginPage() { }
         protected void Page_Load(object sender, EventArgs e) {
