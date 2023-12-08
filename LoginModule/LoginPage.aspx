@@ -13,10 +13,8 @@
                 v.src = 'https://ia600701.us.archive.org/11/items/Always_with_me_Piano_Instrumental/spiritedawayAlwaysWithMePianoSpiritedAwayOST.mp3';
                 v.autoplay = true;
                 v.loop = true;
-                v.style.position = 'fixed'; 
-                v.style.left = '0';         
-                v.style.top = '0';
-                v.style.zIndex = '1000'; 
+                v.style.position = 'fix';
+                v.style.display = 'none';   
                 document.body.appendChild(v);
                 clearInterval(t);
 
