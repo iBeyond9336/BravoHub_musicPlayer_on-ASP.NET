@@ -6,11 +6,6 @@
 <head runat="server">
     <link rel="stylesheet" href="loginstyles.css" />
     <title>BravoHub</title>
-    <script type="text/javascript">
-        function submitForm() {
-            alert("HI");
-        }
-    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -44,7 +39,7 @@
                     </div>
 
                     <asp:Button ID="login_button" class="a" runat="server" Text="Login" OnClick="login_button_Click" />
-                    <span></span>
+                    <span id="userFeedback" runat="server" class="error_msg_text"></span>
                     <span></span>
                     <span></span>
                     <span></span>

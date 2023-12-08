@@ -78,9 +78,36 @@
     <Content Include="LoginModule\LoginPage.aspx" />
     <Content Include="LoginModule\loginstyles.css" />
     <Content Include="LoginModule\preview.gif" />
-    <Content Include="Player\MediaPlayer.html" />
-    <Content Include="Player\MediaPlayer.js" />
-    <Content Include="Player\styles.css" />
+    <Content Include="MediaPlayer\img\bg0.png" />
+    <Content Include="MediaPlayer\img\bg1.png" />
+    <Content Include="MediaPlayer\img\bg2.png" />
+    <Content Include="MediaPlayer\img\bg3.png" />
+    <Content Include="MediaPlayer\img\bg4.png" />
+    <Content Include="MediaPlayer\img\mode1.png" />
+    <Content Include="MediaPlayer\img\mode2.png" />
+    <Content Include="MediaPlayer\img\mode3.png" />
+    <Content Include="MediaPlayer\img\MV.png" />
+    <Content Include="MediaPlayer\img\preview.gif" />
+    <Content Include="MediaPlayer\img\record0.jpg" />
+    <Content Include="MediaPlayer\img\record1.jpg" />
+    <Content Include="MediaPlayer\img\record2.jpg" />
+    <Content Include="MediaPlayer\img\record3.jpg" />
+    <Content Include="MediaPlayer\img\record4.jpg" />
+    <Content Include="MediaPlayer\img\上一首.png" />
+    <Content Include="MediaPlayer\img\下一首.png" />
+    <Content Include="MediaPlayer\img\列表.png" />
+    <Content Include="MediaPlayer\img\暂停.png" />
+    <Content Include="MediaPlayer\img\继续播放.png" />
+    <Content Include="MediaPlayer\img\静音.png" />
+    <Content Include="MediaPlayer\img\音量.png" />
+    <Content Include="MediaPlayer\MediaPlayer.aspx" />
+    <Content Include="MediaPlayer\MediaPlayer.js" />
+    <Content Include="MediaPlayer\mp3\music0.mp3" />
+    <Content Include="MediaPlayer\mp3\music1.mp3" />
+    <Content Include="MediaPlayer\mp3\music2.mp3" />
+    <Content Include="MediaPlayer\mp3\music3.mp3" />
+    <Content Include="MediaPlayer\mp3\music4.mp3" />
+    <Content Include="MediaPlayer\styles.css" />
     <Content Include="RegisterModule\RegisterPage.aspx" />
     <Content Include="RegisterModule\registerStyles.css" />
     <Content Include="Web.config" />
@@ -95,6 +122,13 @@
     </Compile>
     <Compile Include="LoginModule\LoginPage.aspx.designer.cs">
       <DependentUpon>LoginPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MediaPlayer\MediaPlayer.aspx.cs">
+      <DependentUpon>MediaPlayer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MediaPlayer\MediaPlayer.aspx.designer.cs">
+      <DependentUpon>MediaPlayer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterModule\RegisterPage.aspx.cs">
@@ -118,7 +152,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="backgroundMusic\" />
     <Folder Include="Models\" />
-    <Folder Include="Player\mp3\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
