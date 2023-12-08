@@ -38,8 +38,8 @@
 
                     <h4>Let us to help you explore your journey</h4>
                 <div class="socialmedia">
-                    <div class="a"><a href="https://www.facebook.com/">Facebook</a></div>
-                    <div class="a"><a href="https://www.tiktok.com">Tiktok</a></div>
+                    <div class="a"><a href="https://www.facebook.com/ConestogaCollege/">Facebook</a></div>
+                    <div class="a"><a href="https://conestoga.desire2learn.com/d2l/home">eConestoga</a></div>
                </div>   
                 </div>
             </div>
