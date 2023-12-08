@@ -8,7 +8,11 @@
     <link href="registerStyles.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
+  
     <form id="form1" runat="server">
+        <div class="login">
+            <h2>REGISTER</h2>
+         
         <asp:Label ID="Label1" runat="server" Text="Type your new username your username"></asp:Label>
         <input id="RegisterUsername" type="text" placeholder="i.e. " runat="server"/>
         <asp:Label ID="Label2" runat="server" Text="Type your new password"></asp:Label>
@@ -18,6 +22,7 @@
         <div id="ErrorMsg" runat="server"></div>
 
         <asp:Button ID="MainButton" runat="server" Text="Sign Up!" OnClick="Button1_Click" />
+            </div>
     </form>
 </body>
 </html>

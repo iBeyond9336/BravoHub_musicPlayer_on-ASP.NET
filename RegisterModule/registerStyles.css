@@ -1,9 +1,17 @@
 ﻿html,
 body {
-    margin: 0;
     height: 100%;
+    background-size: cover;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
 }
-
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../img/2.gif');
+}
 form {
     display: flex;
     flex-direction: column;
@@ -16,4 +24,8 @@ form {
 #ErrorMsg {
     font-size: 10px;
     color: red;
+}
+
+h1{
+    font:40px;
 }
