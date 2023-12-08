@@ -7,12 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BravoHub
-{
+namespace BravoHub {
 
 
-    public partial class RegiterPage
-    {
+    public partial class RegiterPage {
 
         /// <summary>
         /// form1 control.
@@ -24,31 +22,31 @@ namespace BravoHub
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// LoginUsername control.
+        /// RegisterUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText LoginUsername;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText RegisterUsername;
 
         /// <summary>
-        /// LoginPassword control.
+        /// RegisterPassword1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword LoginPassword;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword RegisterPassword1;
 
         /// <summary>
-        /// Password1 control.
+        /// RegisterPassword2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword Password1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword RegisterPassword2;
 
         /// <summary>
         /// ErrorMsg control.
