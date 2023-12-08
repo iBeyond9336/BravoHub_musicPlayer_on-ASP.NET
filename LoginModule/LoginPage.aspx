@@ -45,7 +45,7 @@
             </div>
             <div class="right_panel">
                 <div class="login">
-                    <h2>LOGIN</h2>
+                    <h2 id="neon">LOGIN</h2>
                     <div class="login_box">
                         <input type="text" class="username" placeholder="UserName" runat="server" id="LoginUsername" />
                        
@@ -65,9 +65,9 @@
                         <input type="checkbox" id="rememberme" />
                         <label for="rememberme">Remember me</label>
                     </div>
-                    <div class="fotter">
-                        <div class="account"><a href="forgotPassword.html">Forget Password</a></div>
-                        <div class="account"><a href="../RegisterModule/RegisterPage.aspx">Register Here!</a></div>
+                    <div class="footer" id="neon1">
+                        <div class="a" ><a href="forgotPassword.html">Forget Password</a></div>
+                        <div class="a"><a href="../RegisterModule/RegisterPage.aspx">Register Here!</a></div>
                     </div>
                 </div>
             </div>
