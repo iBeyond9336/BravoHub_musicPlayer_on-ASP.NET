@@ -16,6 +16,7 @@ namespace BravoHub {
             bool result = ValidateUserCredentials();
             if (result) {
                 // TODO: redirect to the media player page
+                
             }
 
             // TODO: otherwise we should display an error message to the user
