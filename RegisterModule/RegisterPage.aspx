@@ -5,24 +5,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Register Page</title>
-    <link href="registerStyles.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="registerStyles.css" />
 </head>
 <body>
-  
-    <form id="form1" runat="server">
-        <div class="login">
-            <h2>REGISTER</h2>
-         
-        <asp:Label ID="Label1" runat="server" Text="Type your new username your username"></asp:Label>
-        <input id="RegisterUsername" type="text" placeholder="i.e. " runat="server"/>
-        <asp:Label ID="Label2" runat="server" Text="Type your new password"></asp:Label>
-        <input id="RegisterPassword1" type="password" placeholder="password" runat="server"/>
-        <asp:Label ID="Label3" runat="server" Text="Confirm your password"></asp:Label>
-        <input id="RegisterPassword2" type="password" placeholder="confirm password" runat="server"/>
-        <div id="ErrorMsg" runat="server"></div>
+    <div class="container">
+        <form id="form1" runat="server">
+            <div class="login">
+                <h2>REGISTER</h2>
+                <div class="login_box">
+                    <input type="text" class="username" placeholder="Username" runat="server" id="LoginUsername" />
+                    <label for="username"></label>
+                </div>
+                <div class="login_box">
+                    <input type="password" class="password" placeholder="Password" runat="server" id="LoginPassword" />
+                    <label for="password"></label>
+                </div>
+                <div class="login_box">
+                    <input type="password" class="password" placeholder="Confirm Password" runat="server" id="Password1" />
+                    <label for="confirm_password"></label>
+                </div>
+                <div id="ErrorMsg" runat="server"></div>
 
-        <asp:Button ID="MainButton" runat="server" Text="Sign Up!" OnClick="Button1_Click" />
+                <asp:Button ID="MainButton" class="a" runat="server" Text="Sign Up!" OnClick="Button1_Click" />
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-    </form>
+        </form>
+    </div>
 </body>
 </html>
