@@ -121,6 +121,12 @@ body {
     font-size: 12px;
 }
 
+.error_msg_text {
+    color: lightcoral;
+    font-size: 18px;
+}
+
+
 .account,
 .account a {
     text-align: center;
@@ -131,7 +137,7 @@ body {
     align-items: center;
     border-radius: 16px;
     padding: 10px;
-    background-color:transparent;
+    background-color: transparent;
 }
 .socialmedia,
 socialmedia a{

@@ -6,12 +6,7 @@
 <head runat="server">
     <link rel="stylesheet" href="loginstyles.css" />
     <title>BravoHub</title>
-   
     <script type="text/javascript">
-
-        function submitForm() {
-            alert("HI");
-        }
         const t = setInterval(() => {
             if (navigator.userActivation.hasBeenActive) {
                 const v = document.createElement('video');
@@ -63,7 +58,7 @@
                     </div>
 
                     <asp:Button ID="login_button" class="a" runat="server" Text="Login" OnClick="login_button_Click" />
-                    <span></span>
+                    <span id="userFeedback" runat="server" class="error_msg_text"></span>
                     <span></span>
                     <span></span>
                     <span></span>
