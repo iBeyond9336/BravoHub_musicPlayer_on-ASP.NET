@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BravoHub.DatabaseModule;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,13 @@ namespace BravoHub {
             bool result = ValidateUserCredentials();
             if (result) {
                 // TODO: redirect to the media player page
+                Response.Write("<script>alert('Logged in successfully');</script>"); //temporary, before redirect code set
+
+            }
+            else
+            {
+                // Display an error message to the user
+                Response.Write("<script>alert('Invalid username or password');</script>");
             }
 
             // TODO: otherwise we should display an error message to the user
@@ -28,8 +36,9 @@ namespace BravoHub {
                 return false;
             }
 
+            databaseHelper db = new databaseHelper();
+            return db.CheckUserCredentials(LoginUsername.Value, LoginPassword.Value);
 
-            return true;
         }
     }
 }
