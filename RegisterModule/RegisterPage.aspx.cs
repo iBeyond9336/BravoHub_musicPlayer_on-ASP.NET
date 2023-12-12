@@ -19,8 +19,6 @@ namespace BravoHub {
 
         protected void Page_Load(object sender, EventArgs e) {
 
-           
-
         }
 
         protected void Button1_Click(object sender, EventArgs e) {
@@ -50,8 +48,7 @@ namespace BravoHub {
                     return false;
                 }
 
-                databaseHelper db = new databaseHelper();
-
+                DatabaseManager db = new DatabaseManager();
                 // Insert the new user into the database
                 bool isRegistered = db.InsertNewUser(RegisterUsername.Value, RegisterPassword1.Value);
 
@@ -66,10 +63,5 @@ namespace BravoHub {
             return true;
             
         }
-
-       
-
-
-
     }
 }

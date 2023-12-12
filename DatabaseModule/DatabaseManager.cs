@@ -2,17 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Configuration;
-using MySql.Data.MySqlClient;
 
-namespace BravoHub.DatabaseModule
-{
-    public class databaseHelper
+namespace BravoHub.DatabaseModule {
+    public class DatabaseManager
     {
         private readonly string _connectionString;
 
-        public databaseHelper()
+        public DatabaseManager()
         {
             _connectionString = WebConfigurationManager.ConnectionStrings["BravoHubConnectionString"].ConnectionString;
         }

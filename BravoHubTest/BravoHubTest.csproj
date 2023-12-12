@@ -110,14 +110,14 @@
     <Compile Include="RegisterPageTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BravoHub.csproj">
-      <Project>{cf7ba3e1-74b4-4fb9-9feb-cead709b728b}</Project>
-      <Name>BravoHub</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BravoHub.csproj">
+      <Project>{CF7BA3E1-74B4-4FB9-9FEB-CEAD709B728B}</Project>
+      <Name>BravoHub</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

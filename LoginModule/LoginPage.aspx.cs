@@ -20,7 +20,7 @@ namespace BravoHub {
             bool result = ValidateUserCredentials();
             if (result) {
                 // TODO: redirect to the media player page
-                Response.Redirect(MEDIA_PLAYER_PAGE);
+                Response.Write("<script>alert('Logged in successfully');</script>"); //temporary, before redirect code set
             }
 
             // TODO: otherwise we should display an error message to the user
@@ -43,9 +43,8 @@ namespace BravoHub {
                 return false;
             }
 
-            databaseHelper db = new databaseHelper();
+            DatabaseManager db = new DatabaseManager();
             return db.CheckUserCredentials(LoginUsername.Value, LoginPassword.Value);
-
         }
     }
 }
