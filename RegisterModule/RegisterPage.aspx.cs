@@ -22,8 +22,8 @@ namespace BravoHub {
         }
 
         protected void Button1_Click(object sender, EventArgs e) {
-            bool result = RegisterNewUser();
-            if (result) {
+            bool result1 = RegisterNewUser();
+            if (result1) {
                 // Register the user in the DB
                 ErrorMsg.InnerText = "Registered!";
                 MainButton.Text = GO_BACK_BTN_TEXT;
@@ -31,7 +31,7 @@ namespace BravoHub {
             }
 
             // Otherwise, display the error
-            ErrorMsg.InnerText = "Oops something happen";
+            //ErrorMsg.InnerText = "Oops something happen";
         }
 
         protected bool RegisterNewUser() {

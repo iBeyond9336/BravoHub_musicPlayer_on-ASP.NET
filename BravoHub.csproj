@@ -163,6 +163,7 @@
     <Content Include="MediaPlayer\styles.css" />
     <Content Include="RegisterModule\RegisterPage.aspx" />
     <Content Include="RegisterModule\registerStyles.css" />
+    <Content Include="SQL\bravohub.sql" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

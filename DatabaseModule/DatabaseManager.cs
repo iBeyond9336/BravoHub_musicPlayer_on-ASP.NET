@@ -43,14 +43,15 @@ namespace BravoHub.DatabaseModule {
                 using (var conn = GetConnection())
                 {
                     conn.Open();
-                    string query = "INSERT INTO users (username, password, email) VALUES (@username, @password, @email)";
+                    string query = "INSERT INTO users (username, password, email, role) VALUES (@username, @password, @email, @role)";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@username", username);
                         cmd.Parameters.AddWithValue("@password", password); // Password should be hashed for security
                         cmd.Parameters.AddWithValue("@email", "example@com");
-                        
+                        cmd.Parameters.AddWithValue("@role", "user");
+
 
                         int result = cmd.ExecuteNonQuery();
                         return result > 0;
