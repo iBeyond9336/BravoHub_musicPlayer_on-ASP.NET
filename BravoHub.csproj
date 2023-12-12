@@ -173,7 +173,7 @@
     <Compile Include="AdminModule\AdminPage.aspx.designer.cs">
       <DependentUpon>AdminPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseModule\databaseHelper.cs" />
+    <Compile Include="DatabaseModule\DatabaseManager.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
