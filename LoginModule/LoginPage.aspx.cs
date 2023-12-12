@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 namespace BravoHub {
     public partial class LoginPage : Page {
         private const string MEDIA_PLAYER_PAGE = "../MediaPlayer/MediaPlayer.aspx";
+        private const string ADMIN_PAGE = "../AdminModule/AdminPage.aspx";
         private const string ERROR_MSG_EMPTY_INPUT = "The UserName or Password can't be empty";
         protected LoginPage() { }
         protected void Page_Load(object sender, EventArgs e) {
@@ -26,12 +27,20 @@ namespace BravoHub {
         }
 
         protected bool ValidateUserCredentials() {
-            if (LoginUsername.Value == string.Empty) {
+            string username = LoginUsername.Value;
+            string password = LoginPassword.Value;
+            if (username == string.Empty) {
                 return false;
-            } else if (LoginPassword.Value == string.Empty) {
+            } else if (password == string.Empty) {
                 return false;
             }
-
+            
+            // if user is Admin
+            if (username == "Edwin" && password == "123456")
+            {
+                Response.Redirect(ADMIN_PAGE);
+                return false;
+            }
 
             return true;
         }
