@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BravoHub.DatabaseModule;
+using MySql.Data.MySqlClient;
+
 
 namespace BravoHub {
-    public partial class RegiterPage : Page {
+    public partial class RegiterPage : Page 
+    {
         private const string LOGIN_PAGE_URL = "../LoginModule/LoginPage.aspx";
         protected const string GO_BACK_BTN_TEXT = "Go back to Login Page";
         private const string SIGN_UP_BTN_TEXT = "Sign Up!";
@@ -42,9 +47,21 @@ namespace BravoHub {
                 } else if (RegisterPassword1.Value != RegisterPassword2.Value) {
                     return false;
                 }
-            }
 
+                DatabaseManager db = new DatabaseManager();
+                // Insert the new user into the database
+                bool isRegistered = db.InsertNewUser(RegisterUsername.Value, RegisterPassword1.Value);
+
+                if (!isRegistered)
+                {
+                    ErrorMsg.InnerText = "Registration failed. Please try again.";
+                    return false;
+                }
+
+                return true; // Registration successful
+            }
             return true;
+            
         }
     }
 }
