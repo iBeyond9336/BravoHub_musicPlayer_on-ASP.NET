@@ -7,10 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BravoHub.AdminModule {
+namespace BravoHub.AdminModule
+{
 
 
-    public partial class AdminPage {
+    public partial class AdminPage
+    {
 
         /// <summary>
         /// form1 control.
@@ -49,6 +51,15 @@ namespace BravoHub.AdminModule {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl TabDescription1;
 
         /// <summary>
+        /// SectionInputElement control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox SectionInputElement;
+
+        /// <summary>
         /// SectionSearchBtn control.
         /// </summary>
         /// <remarks>
@@ -67,6 +78,15 @@ namespace BravoHub.AdminModule {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl TabDescription2;
 
         /// <summary>
+        /// DeleteUserInputElement control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox DeleteUserInputElement;
+
+        /// <summary>
         /// DeleteUserBtn control.
         /// </summary>
         /// <remarks>
@@ -74,6 +94,15 @@ namespace BravoHub.AdminModule {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button DeleteUserBtn;
+
+        /// <summary>
+        /// PromotMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PromotMsg;
 
         /// <summary>
         /// UsersBtn control.

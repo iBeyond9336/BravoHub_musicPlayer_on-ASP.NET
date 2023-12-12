@@ -16,11 +16,12 @@
             <main id="Pannel">
                 <h2 id="TabTitle" runat="server"></h2>
                 <p id="TabDescription1" runat="server"></p>
-                <input id="SectionInputElement" type="text" />
-                <asp:Button ID="SectionSearchBtn" runat="server" Text="Search" />
+                <asp:TextBox ID="SectionInputElement" runat="server"/>
+                <asp:Button ID="SectionSearchBtn" runat="server" Text="Search" OnClick="btnSearchClicked"/>
                 <p id="TabDescription2" runat="server"></p>
-                <input id="DeleteUserInputElement" type="text" />
-                <asp:Button ID="DeleteUserBtn" runat="server" Text="Delete" />
+                <asp:TextBox ID="DeleteUserInputElement" runat="server"/>
+                <asp:Button ID="DeleteUserBtn" runat="server" Text="Delete" OnClick="btnDeleteClicked"/> <br/>
+                <asp:Label ID="PromotMsg" runat="server" ForeColor="Yellow"/>
             </main>
             <side id="Tabs">
                 <section id="Features">
