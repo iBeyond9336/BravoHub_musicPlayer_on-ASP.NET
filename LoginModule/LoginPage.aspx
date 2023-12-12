@@ -62,7 +62,7 @@
                     <span></span>
 
                     <div class="remember">
-                        <input type="checkbox" id="rememberme" />
+                        <input type="checkbox" id="rememberme" runat="server"/>
                         <label for="rememberme">Remember me</label>
                     </div>
                     <div class="footer" id="neon1">
