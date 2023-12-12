@@ -121,7 +121,9 @@ body {
 
 .error_msg_text {
     color: lightcoral;
-    font-size: 18px;
+    font-size: 14px;
+    padding: 5px;
+    font-family: cursive, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 
