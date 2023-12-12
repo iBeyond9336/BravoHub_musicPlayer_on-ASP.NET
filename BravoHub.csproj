@@ -116,15 +116,63 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminModule\AdminPage.aspx" />
+    <Content Include="AdminModule\AdminPageStyles.css" />
     <Content Include="Global.asax" />
+    <Content Include="img\1.gif" />
+    <Content Include="img\2.gif" />
+    <Content Include="img\3.gif" />
+    <Content Include="img\bg0.png" />
+    <Content Include="img\icons8-back-30.png" />
+    <Content Include="img\icons8-next-30.png" />
+    <Content Include="img\icons8-notification-48.png" />
+    <Content Include="img\icons8-play-50.png" />
+    <Content Include="img\preview.gif" />
     <Content Include="LoginModule\LoginPage.aspx" />
     <Content Include="LoginModule\loginstyles.css" />
     <Content Include="LoginModule\preview.gif" />
+    <Content Include="MediaPlayer\img\bg0.png" />
+    <Content Include="MediaPlayer\img\bg1.png" />
+    <Content Include="MediaPlayer\img\bg2.png" />
+    <Content Include="MediaPlayer\img\bg3.png" />
+    <Content Include="MediaPlayer\img\bg4.png" />
+    <Content Include="MediaPlayer\img\mode1.png" />
+    <Content Include="MediaPlayer\img\mode2.png" />
+    <Content Include="MediaPlayer\img\mode3.png" />
+    <Content Include="MediaPlayer\img\MV.png" />
+    <Content Include="MediaPlayer\img\preview.gif" />
+    <Content Include="MediaPlayer\img\record0.jpg" />
+    <Content Include="MediaPlayer\img\record1.jpg" />
+    <Content Include="MediaPlayer\img\record2.jpg" />
+    <Content Include="MediaPlayer\img\record3.jpg" />
+    <Content Include="MediaPlayer\img\record4.jpg" />
+    <Content Include="MediaPlayer\img\上一首.png" />
+    <Content Include="MediaPlayer\img\下一首.png" />
+    <Content Include="MediaPlayer\img\列表.png" />
+    <Content Include="MediaPlayer\img\暂停.png" />
+    <Content Include="MediaPlayer\img\继续播放.png" />
+    <Content Include="MediaPlayer\img\静音.png" />
+    <Content Include="MediaPlayer\img\音量.png" />
+    <Content Include="MediaPlayer\MediaPlayer.aspx" />
+    <Content Include="MediaPlayer\MediaPlayer.js" />
+    <Content Include="MediaPlayer\mp3\music0.mp3" />
+    <Content Include="MediaPlayer\mp3\music1.mp3" />
+    <Content Include="MediaPlayer\mp3\music2.mp3" />
+    <Content Include="MediaPlayer\mp3\music3.mp3" />
+    <Content Include="MediaPlayer\mp3\music4.mp3" />
+    <Content Include="MediaPlayer\styles.css" />
     <Content Include="RegisterModule\RegisterPage.aspx" />
     <Content Include="RegisterModule\registerStyles.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminModule\AdminPage.aspx.cs">
+      <DependentUpon>AdminPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminModule\AdminPage.aspx.designer.cs">
+      <DependentUpon>AdminPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseModule\databaseHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -135,6 +183,13 @@
     </Compile>
     <Compile Include="LoginModule\LoginPage.aspx.designer.cs">
       <DependentUpon>LoginPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MediaPlayer\MediaPlayer.aspx.cs">
+      <DependentUpon>MediaPlayer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MediaPlayer\MediaPlayer.aspx.designer.cs">
+      <DependentUpon>MediaPlayer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterModule\RegisterPage.aspx.cs">
