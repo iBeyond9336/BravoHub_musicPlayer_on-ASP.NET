@@ -163,7 +163,6 @@
     <Content Include="MediaPlayer\styles.css" />
     <Content Include="RegisterModule\RegisterPage.aspx" />
     <Content Include="RegisterModule\registerStyles.css" />
-    <Content Include="SQL\bravohub.sql" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +177,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="LoginModule\Controller\LoginController.cs" />
     <Compile Include="LoginModule\LoginPage.aspx.cs">
       <DependentUpon>LoginPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -192,6 +192,7 @@
     <Compile Include="MediaPlayer\MediaPlayer.aspx.designer.cs">
       <DependentUpon>MediaPlayer.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterModule\RegisterPage.aspx.cs">
       <DependentUpon>RegisterPage.aspx</DependentUpon>
@@ -213,7 +214,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="backgroundMusic\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

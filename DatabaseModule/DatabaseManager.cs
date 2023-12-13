@@ -1,6 +1,8 @@
-﻿using MySql.Data.MySqlClient;
+﻿using BravoHub.Models;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web.Configuration;
 
@@ -36,6 +38,38 @@ namespace BravoHub.DatabaseModule {
             }
         }
 
+        public UserModel GetUserByUsername(string username) {
+            try {
+                MySqlConnection conn = GetConnection();
+                conn.Open();
+                string query = "SELECT * FROM users WHERE username = @username;";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@username", username);
+                DataTable dataTable = new DataTable();
+
+                // Use a DataAdapter to fill the DataTable
+                UserModel user = null;
+                using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd)) {
+                    dataAdapter.Fill(dataTable);
+                    user = new UserModel();
+                    // Now, iterate through the DataTable rows
+                    foreach (DataRow row in dataTable.Rows) {
+                        // Access each field by column name or index
+                        user.Username = row["username"].ToString();
+                        user.Email = row["email"].ToString();
+                        user.Role = row["user-type"].ToString();
+                    }
+                }
+
+                dataTable.Dispose();
+                cmd.Dispose();
+                conn.Dispose();
+                return user;
+            } catch (Exception ex) {
+                return null;
+            }
+        }
+
         public bool InsertNewUser(string username, string password)
         {
             try
@@ -65,7 +99,7 @@ namespace BravoHub.DatabaseModule {
             }
         }
 
-        public bool CheckUserCredentials(string username, string password)
+        public bool CheckUserCredentials(UserModel user)
         {
             try
             {
@@ -76,8 +110,8 @@ namespace BravoHub.DatabaseModule {
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@username", username);
-                        cmd.Parameters.AddWithValue("@password", password); // Password should be hashed and compared
+                        cmd.Parameters.AddWithValue("@username", user.Username);
+                        cmd.Parameters.AddWithValue("@password", user.Password); // Password should be hashed and compared
 
                         int result = Convert.ToInt32(cmd.ExecuteScalar());
                         return result > 0;
