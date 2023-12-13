@@ -57,7 +57,7 @@ namespace BravoHub.DatabaseModule {
                         // Access each field by column name or index
                         user.Username = row["username"].ToString();
                         user.Email = row["email"].ToString();
-                        user.Role = row["user-type"].ToString();
+                        user.Role = row["role"].ToString();
                     }
                 }
 
