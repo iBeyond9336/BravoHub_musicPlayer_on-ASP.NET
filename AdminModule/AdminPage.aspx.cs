@@ -13,6 +13,8 @@ namespace BravoHub.AdminModule {
     }
 
     public partial class AdminPage : System.Web.UI.Page {
+        private readonly string LOGIN_PAGE = "../LoginModule/LoginPage.aspx";
+
         private readonly string UsersTabTitle = "Users Tab";
         private readonly string MediasTabTitle = "Medias Tab";
         private readonly string UsersTabDescription1 = "Section 1: You can search for any existing user's info(name)";
@@ -48,7 +50,7 @@ namespace BravoHub.AdminModule {
         }
 
         protected void LogOutBtn_Click(object sender, EventArgs e) {
-
+            Response.Redirect(LOGIN_PAGE);
         }
 
         protected void UsersBtn_Click(object sender, EventArgs e) {
