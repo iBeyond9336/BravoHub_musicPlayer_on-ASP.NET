@@ -16,18 +16,12 @@ namespace BravoHub.DatabaseModule {
 
         public DatabaseManager()
         {
-            string server = "bravohub.mysql.database.azure.com"; // Hostname
-            string uid = "bravo"; // Username (usually in the format 'username@hostname')
-            string password = "Conestoga1"; 
-            string database = "bravoazure"; // Database name
+          
 
+            _connectionString = WebConfigurationManager.ConnectionStrings["BravoHubConnectionString"].ConnectionString;
 
+         
 
-            //string server = Environment.GetEnvironmentVariable("DB_SERVER");
-            //string uid = Environment.GetEnvironmentVariable("DB_USER");
-            //string password = Environment.GetEnvironmentVariable("DB_PASSWORD");
-            //string database = "bravohub"; 
-            _connectionString = $"server={server};port=3306;database={database};uid={uid};password={password};SslMode=required";
         }
 
         public MySqlConnection GetConnection()
@@ -108,7 +102,7 @@ namespace BravoHub.DatabaseModule {
                         cmd.Parameters.AddWithValue("@username", username);
                         cmd.Parameters.AddWithValue("@hashedpassword", hashedPassword);
                         cmd.Parameters.AddWithValue("@email", "example@com");
-                        
+                        cmd.Parameters.AddWithValue("@role", "user");
 
                         int result = cmd.ExecuteNonQuery();
                         return result > 0;
@@ -131,13 +125,20 @@ namespace BravoHub.DatabaseModule {
                     conn.Open();
                     string query = "SELECT hashedpassword FROM users WHERE username = @username";
 
+
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@username", user.Username);
-                        cmd.Parameters.AddWithValue("@password", user.Password); // Password should be hashed and compared
+                        cmd.Parameters.AddWithValue("@username", username);
 
-                        int result = Convert.ToInt32(cmd.ExecuteScalar());
-                        return result > 0;
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string storedHash = reader.GetString(0);
+                                return BCrypt.Net.BCrypt.Verify(password, storedHash);
+                            }
+                        }
+
                     }
                 }
             }
