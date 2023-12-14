@@ -272,11 +272,6 @@ namespace BravoHub.AdminModule
 
             return foundFiles;
         }
-    }
-
-
-}
-        }
 
         protected void LogFileList_TextChanged(object sender, EventArgs e) {
             // Display the logFileContent
