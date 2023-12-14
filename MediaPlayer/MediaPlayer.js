@@ -1,51 +1,51 @@
-﻿// 获取主题背景
+﻿// fet the main background
 var body = document.getElementById('body');
-// 获取音频播放器对象
+// get media object
 var audio = document.getElementById('audioTag');
 
-// 歌曲名
+// music name
 var musicTitle = document.getElementById('music-title');
-// 歌曲海报
+// music poster
 var recordImg = document.getElementById('record-img');
-// 歌曲作者
+// artist
 var author = document.getElementById('author-name');
 
-// 进度条
+// progress bar
 var progress = document.getElementById('progress');
-// 总进度条
+// progress-total
 var progressTotal = document.getElementById('progress-total');
 
-// 已进行时长
+// played time
 var playedTime = document.getElementById('playedTime');
-// 总时长
+// suto time
 var audioTime = document.getElementById('audioTime');
 
-// 播放模式按钮
+// playmode
 var mode = document.getElementById('playMode');
-// 上一首
+// fowrard
 var skipForward = document.getElementById('skipForward');
-// 暂停按钮
+// pause
 var pause = document.getElementById('playPause');
-// 下一首
+// backward
 var skipBackward = document.getElementById('skipBackward');
-// 音量调节
+// volume
 var volume = document.getElementById('volume');
-// 音量调节滑块
+// volume slider
 var volumeTogger = document.getElementById('volumn-togger');
 
-// 列表
+// list
 var list = document.getElementById('list');
-// 倍速
+// speed
 var speed = document.getElementById('speed');
 // MV
 var MV = document.getElementById('MV');
 
-// 左侧关闭面板
+// close-list
 var closeList = document.getElementById('close-list');
-// 音乐列表面板
+// music list
 var musicList = document.getElementById('music-list');
 
-// 暂停/播放功能实现
+// play/pause function
 pause.onclick = function (e) {
     if (audio.paused) {
         audio.play();
@@ -60,15 +60,15 @@ pause.onclick = function (e) {
     }
 }
 
-// 更新进度条
-audio.addEventListener('timeupdate', updateProgress); // 监听音频播放时间并更新进度条
+// update progress
+audio.addEventListener('timeupdate', updateProgress); // Monitor the audio playback time and update the progress bar
 function updateProgress() {
     var value = audio.currentTime / audio.duration;
     progress.style.width = value * 100 + '%';
     playedTime.innerText = transTime(audio.currentTime);
 }
 
-//音频播放时间换算
+//Audio playback time conversion
 function transTime(value) {
     var time = "";
     var h = parseInt(value / 3600);
@@ -84,7 +84,7 @@ function transTime(value) {
     return time;
 }
 
-// 格式化时间显示，补零对齐
+// Formatted time display, zero padding and alignment
 function formatTime(value) {
     var time = "";
     var s = value.split(':');
@@ -98,9 +98,9 @@ function formatTime(value) {
     return time;
 }
 
-// 点击进度条跳到指定点播放
+// Click the progress bar to jump to the specified point to play
 progressTotal.addEventListener('mousedown', function (event) {
-    // 只有音乐开始播放后才可以调节，已经播放过但暂停了的也可以
+    // You can only adjust the music after it starts playing. It can also be adjusted after the music has been played but paused.
     if (!audio.paused || audio.currentTime != 0) {
         var pgsWidth = parseFloat(window.getComputedStyle(progressTotal, null).width.replace('px', ''));
         var rate = event.offsetX / pgsWidth;
@@ -109,7 +109,7 @@ progressTotal.addEventListener('mousedown', function (event) {
     }
 });
 
-// 点击列表展开音乐列表
+// Click on the list to expand the music list
 list.addEventListener('click', function (event) {
     musicList.classList.remove("list-card-hide");
     musicList.classList.add("list-card-show");
@@ -118,20 +118,20 @@ list.addEventListener('click', function (event) {
     closeList.addEventListener('click', closeListBoard);
 });
 
-// 点击关闭面板关闭音乐列表
+// Click Close Panel to close the music list
 function closeListBoard() {
     musicList.classList.remove("list-card-show");
     musicList.classList.add("list-card-hide");
     closeList.style.display = "none";
 }
 
-// 存储当前播放的音乐序号
+// Store the currently playing music sequence number
 var musicId = 0;
 
-// 后台音乐列表
-let musicData = [['洛春赋', '云汐'], ['Yesterday', 'Alok/Sofi Tukker'], ['江南烟雨色', '杨树人'], ['Vision pt.II', 'Vicetone'], ['Let it be', 'The Beatles']];
+// Music list
+let musicData = [['Luo ChunFu', 'Xi Yun'], ['Yesterday', 'Alok/Sofi Tukker'], ['Misty Rain', 'Yang'], ['Vision pt.II', 'Vicetone'], ['Let it be', 'The Beatles']];
 
-// 初始化音乐
+// Initialize the musics
 function initMusic() {
     audio.src = "mp3/music" + musicId.toString() + ".mp3";
     audio.load();
@@ -142,7 +142,7 @@ function initMusic() {
         recordImg.style.backgroundImage = "url('./img/record" + musicId.toString() + ".jpg')";
         body.style.backgroundImage = "url('./img/bg" + musicId.toString() + ".png')";
         audioTime.innerText = transTime(audio.duration);
-        // 重置进度条
+        // restore the progress bar
         audio.currentTime = 0;
         updateProgress();
         refreshRotate();
@@ -150,7 +150,7 @@ function initMusic() {
 }
 initMusic();
 
-// 初始化并播放
+// initialize and play
 function initAndPlay() {
     initMusic();
     pause.classList.remove('icon-play');
@@ -159,7 +159,7 @@ function initAndPlay() {
     rotateRecord();
 }
 
-// 播放模式设置
+// Play mode settings
 var modeId = 1;
 mode.addEventListener('click', function (event) {
     modeId = modeId + 1;
@@ -171,11 +171,11 @@ mode.addEventListener('click', function (event) {
 
 audio.onended = function () {
     if (modeId == 2) {
-        // 跳转至下一首歌
+        // click to next
         musicId = (musicId + 1) % 4;
     }
     else if (modeId == 3) {
-        // 随机生成下一首歌的序号
+        // randome generate the sequence number
         var oldId = musicId;
         while (true) {
             musicId = Math.floor(Math.random() * 3) + 0;
@@ -185,7 +185,7 @@ audio.onended = function () {
     initAndPlay();
 }
 
-// 上一首
+// last song
 skipForward.addEventListener('click', function (event) {
     musicId = musicId - 1;
     if (musicId < 0) {
@@ -194,7 +194,7 @@ skipForward.addEventListener('click', function (event) {
     initAndPlay();
 });
 
-// 下一首
+// next song
 skipBackward.addEventListener('click', function (event) {
     musicId = musicId + 1;
     if (musicId > 4) {
@@ -203,7 +203,7 @@ skipBackward.addEventListener('click', function (event) {
     initAndPlay();
 });
 
-// 倍速功能（这里直接暴力解决了）
+// speed mode (hard coded)
 speed.addEventListener('click', function (event) {
     var speedText = speed.innerText;
     if (speedText == "1.0X") {
@@ -229,15 +229,15 @@ speed.addEventListener('click', function (event) {
     }
 });
 
-// MV功能
+// video player
 MV.addEventListener('click', function (event) {
-    // 向新窗口传值
+    // open new window
     var storage_list = window.sessionStorage;
     storage_list['musicId'] = musicId;
     window.open("video.html");
 });
 
-// 暴力捆绑列表音乐
+// hard coded to generate the music list`
 document.getElementById("music0").addEventListener('click', function (event) {
     musicId = 0;
     initAndPlay();
@@ -259,31 +259,31 @@ document.getElementById("music4").addEventListener('click', function (event) {
     initAndPlay();
 });
 
-// 刷新唱片旋转角度
+// Refresh record rotation angle
 function refreshRotate() {
     recordImg.classList.add('rotate-play');
 }
 
-// 使唱片旋转
+// make record spin when play
 function rotateRecord() {
     recordImg.style.animationPlayState = "running"
 }
 
-// 停止唱片旋转
+// stop record spin when pause
 function rotateRecordStop() {
     recordImg.style.animationPlayState = "paused"
 }
 
-// 存储上一次的音量
+// store last volume
 var lastVolumn = 70
 
-// 滑块调节音量
+// slider for volume
 audio.addEventListener('timeupdate', updateVolumn);
 function updateVolumn() {
     audio.volume = volumeTogger.value / 70;
 }
 
-// 点击音量调节设置静音
+// click to set volume
 volume.addEventListener('click', setNoVolumn);
 function setNoVolumn() {
     if (volumeTogger.value == 0) {
