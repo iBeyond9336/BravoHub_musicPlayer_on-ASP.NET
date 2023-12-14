@@ -16,12 +16,7 @@ namespace BravoHub.DatabaseModule {
 
         public DatabaseManager()
         {
-          
-
             _connectionString = WebConfigurationManager.ConnectionStrings["BravoHubConnectionString"].ConnectionString;
-
-         
-
         }
 
         public MySqlConnection GetConnection()
