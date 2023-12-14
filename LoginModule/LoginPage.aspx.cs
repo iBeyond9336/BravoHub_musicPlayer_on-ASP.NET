@@ -1,4 +1,5 @@
 ﻿using BravoHub.DatabaseModule;
+using BravoHub.FileLoggerModule;
 using BravoHub.LoginModule.Controller;
 using Google.Protobuf.WellKnownTypes;
 using MySqlX.XDevAPI.Common;
@@ -15,7 +16,11 @@ namespace BravoHub {
     public partial class LoginPage : Page {
         private const string MEDIA_PLAYER_PAGE = "../MediaPlayer/MediaPlayer.aspx";
         private const string ADMIN_PAGE = "../AdminModule/AdminPage.aspx";
-        private const string ERROR_MSG_INPUT = "User haven't registered";
+        private const string ERROR_MSG_INPUT = "LoginPage - haven't registered";
+        private const string ERROR_USERNAME_PASSWORD = "LoginPage - Username or password incorrect";
+        private const string ERROR_UNEXPECTED = "LoginPage - Oops something bad happened!";
+        private const string VALID_USER = "LoginPage - Valid user";
+
         private const string REMEMBER_ME_COOKIE_KEY = "RememberMeCookie";
 
         private LoginController controller;
@@ -37,15 +42,19 @@ namespace BravoHub {
             switch(result) {
                 case 0:
                     userFeedback.InnerText = ERROR_MSG_INPUT;
+                    FileLogger.GetInstance().LogMessage(ERROR_MSG_INPUT, MessageType.ERROR);
                     break;
                 case 1:
+                    FileLogger.GetInstance().LogMessage(VALID_USER);
                     Redirect();
                     break;
                 case 2:
-                    userFeedback.InnerText = "Username or password incorrect";
+                    userFeedback.InnerText = ERROR_USERNAME_PASSWORD;
+                    FileLogger.GetInstance().LogMessage(ERROR_USERNAME_PASSWORD, MessageType.ERROR);
                     break;
                 default:
-                    userFeedback.InnerText = "Oops something bad happened!";
+                    userFeedback.InnerText = ERROR_UNEXPECTED;
+                    FileLogger.GetInstance().LogMessage(ERROR_UNEXPECTED, MessageType.ERROR);
                     break;
 
             }
