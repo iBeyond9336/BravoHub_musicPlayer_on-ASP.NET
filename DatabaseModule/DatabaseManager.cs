@@ -57,6 +57,7 @@ namespace BravoHub.DatabaseModule {
                         foreach (DataRow row in dataTable.Rows) {
                             // Access each field by column name or index
                             user.Username = row["username"].ToString();
+                            user.Password = row["password"].ToString();     // Alan added to get password in Admin page
                             user.Email = row["email"].ToString();
                             user.Role = row["role"].ToString();
                         }
