@@ -6,7 +6,7 @@
 <head runat="server">
     <link rel="stylesheet" href="loginstyles.css" />
     <title>BravoHub</title>
-    <script type="text/javascript">
+    <%--<script type="text/javascript">
         const t = setInterval(() => {
             if (navigator.userActivation.hasBeenActive) {
                 const v = document.createElement('video');
@@ -19,9 +19,9 @@
                 clearInterval(t);
 
             }
-        }, 1000);
+        }, 1000);--%>
 
-    </script>
+  <%--  </script>--%>
 </head>
 <body>
 
