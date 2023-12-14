@@ -1,81 +1,99 @@
-﻿using System;
+﻿using BravoHub.DatabaseModule;
+using BravoHub.FileLoggerModule;
+using BravoHub.LoginModule.Controller;
+using Google.Protobuf.WellKnownTypes;
+using MySqlX.XDevAPI.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace BravoHub {
     public partial class LoginPage : Page {
         private const string MEDIA_PLAYER_PAGE = "../MediaPlayer/MediaPlayer.aspx";
-        private const string ERROR_MSG_EMPTY_INPUT = "The UserName or Password can't be empty";
-        private const string ERROR_MSG_INVALID_INPUT = "The UserName or Password does not match our record";
+        private const string ADMIN_PAGE = "../AdminModule/AdminPage.aspx";
+        private const string ERROR_MSG_INPUT = "LoginPage - haven't registered";
+        private const string ERROR_USERNAME_PASSWORD = "LoginPage - Username or password incorrect";
+        private const string ERROR_UNEXPECTED = "LoginPage - Oops something bad happened!";
+        private const string VALID_USER = "LoginPage - Valid user";
 
-        protected LoginPage() { }
+        private const string REMEMBER_ME_COOKIE_KEY = "RememberMeCookie";
+
+        private LoginController controller;
+        protected LoginPage() {
+            controller = new LoginController(this);
+        }
         protected void Page_Load(object sender, EventArgs e) {
-
+            // use cookie to input user info
+            if (Request.Cookies[REMEMBER_ME_COOKIE_KEY] != null) {
+                string userInfoCookieString = Request.Cookies[REMEMBER_ME_COOKIE_KEY].Value;
+                string[] userInfoArray = userInfoCookieString.Split(',');
+                LoginUsername.Value = userInfoArray[0];
+                LoginPassword.Value = userInfoArray[1];
+            }
         }
 
         protected void login_button_Click(object sender, EventArgs e) {
-            bool result = ValidateUserCredentials();
-            if (result) {
-                // TODO: redirect to the media player page
-                Response.Redirect(MEDIA_PLAYER_PAGE);
-            }
+            int result = controller.CheckCredentials(LoginUsername.Value, LoginPassword.Value);
+            switch(result) {
+                case 0:
+                    userFeedback.InnerText = ERROR_MSG_INPUT;
+                    FileLogger.GetInstance().LogMessage(ERROR_MSG_INPUT, MessageType.ERROR);
+                    break;
+                case 1:
+                    FileLogger.GetInstance().LogMessage(VALID_USER);
+                    Redirect();
+                    break;
+                case 2:
+                    userFeedback.InnerText = ERROR_USERNAME_PASSWORD;
+                    FileLogger.GetInstance().LogMessage(ERROR_USERNAME_PASSWORD, MessageType.ERROR);
+                    break;
+                default:
+                    userFeedback.InnerText = ERROR_UNEXPECTED;
+                    FileLogger.GetInstance().LogMessage(ERROR_UNEXPECTED, MessageType.ERROR);
+                    break;
 
-            // TODO: otherwise we should display an error message to the user
-            userFeedback.InnerText = ERROR_MSG_EMPTY_INPUT;
+            }
+            
         }
 
         protected bool ValidateUserCredentials() {
-            if (LoginUsername.Value == string.Empty) {
-                return false;
-            } else if (LoginPassword.Value == string.Empty) {
-                return false;
-            }
-
-
+            controller.CheckCredentials(LoginUsername.Value, LoginPassword.Value);
             return true;
         }
 
-        protected void admin_button_Click(object sender, EventArgs e)
-        {
-            bool result = ValidateAdminCredentials();
-            if (result)
-            {
-                // TODO: redirect to the madmin page
-                Response.Redirect(ADMIN_PAGE);
+        private void Redirect() {
+            if (rememberme.Checked && null == Request.Cookies[REMEMBER_ME_COOKIE_KEY]) {
+                // save to cookies
+                string[] userInfo = { LoginUsername.Value, LoginPassword.Value };
+                string userInfoArray = string.Join(",", userInfo);
+                SaveCookie(REMEMBER_ME_COOKIE_KEY, userInfoArray);
+            } else if (!rememberme.Checked && null != Request.Cookies[REMEMBER_ME_COOKIE_KEY]) {
+                // Remove the cookie;
+                Request.Cookies.Remove(REMEMBER_ME_COOKIE_KEY);
             }
 
-            // TODO: otherwise we should display an error message to the user
-                userFeedback.InnerText = ERROR_MSG_INVALID_INPUT;
-
+            controller.GetNextPagePath(LoginUsername.Value);
+            userFeedback.InnerText = null;
         }
 
-        protected bool ValidateAdminCredentials()
-        {
-            string Adminusername = LoginUsername.Value;
-            string Adminpassword = LoginPassword.Value;
-            if (Adminusername == string.Empty)
-            {
-                return false;
-            }
-            else if (Adminpassword == string.Empty)
-            {
-                return false;
-            }
-
-            // if user is Admin
-            if (Adminusername == "Edwin" && Adminpassword == "123456")
-            {
-                Response.Redirect(ADMIN_PAGE);
-                return true;
-            }
-            
-            return false;
-            
-
+        private void SaveCookie(string key, string value) {
+            HttpCookie cookie = new HttpCookie(key, value);
+            Response.Cookies.Add(cookie);
         }
+
+        public void ShowMediaPlayerPage() {
+            Response.Redirect(MEDIA_PLAYER_PAGE);
+        }
+
+        public void ShowAdminPage() {
+            Response.Redirect(ADMIN_PAGE);
+        }
+
 
     }
 }
