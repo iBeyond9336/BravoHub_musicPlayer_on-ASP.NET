@@ -1,0 +1,95 @@
+﻿:root {
+    --total-columns: 15;
+    --total-rows: 20;
+    --primary-color: #001A24;
+    --secondary-color: #022649;
+}
+
+html,
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    height: 100%;
+}
+
+h1,
+h2,
+p {
+    margin: 0;
+    color: white;
+
+}
+
+body {
+    background: linear-gradient(0deg, var(--primary-color), var(--secondary-color));
+}
+
+form,
+div#RootContainer {
+    height:inherit;
+}
+
+div#RootContainer {
+    display: grid;
+}
+
+#HeaderPage {
+    grid-column-start: 1;
+    grid-column-end: var(--total-columns);
+    grid-row-start: 1;
+    grid-row-end: 2;
+    background-color: var(--primary-color);
+    padding-left: 1.5%;
+}
+
+#Pannel {
+    padding: 13px;
+    grid-column-start: 2;
+    grid-column-end: var(--total-columns);
+    grid-row-start: 2;
+    grid-row-end: var(--total-rows);
+}
+
+#Tabs {
+    max-width: 100px;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: var(--total-rows);
+    background-color: var(--primary-color);
+
+    display:flex;
+    flex-direction:column;
+    justify-content: space-between;
+}
+
+#Features {
+    display: flex;
+    flex-direction: column;
+}
+
+.tab{
+    background-color: transparent;
+    border-width: 0;
+    color: white;
+    flex-basis: 56px;
+    padding: 0;
+    &:hover {
+        background-color: var(--secondary-color);
+    }
+    &.tab-selected {
+        background-color: var(--secondary-color);
+    }
+}
+
+input[id="LogOutBtn"] {
+    background-color: transparent;
+    border-width: 1px;
+    border-color: white;
+    color: white;
+    border-radius: 12px;
+    margin: 0 8% 24px;
+    &:hover {
+        background-color: var(--secondary-color);
+    }
+}

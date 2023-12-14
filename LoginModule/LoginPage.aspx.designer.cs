@@ -7,10 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BravoHub {
+namespace BravoHub
+{
 
 
-    public partial class LoginPage {
+    public partial class LoginPage
+    {
 
         /// <summary>
         /// form1 control.
@@ -47,5 +49,23 @@ namespace BravoHub {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button login_button;
+
+        /// <summary>
+        /// userFeedback control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl userFeedback;
+
+        /// <summary>
+        /// rememberme control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox rememberme;
     }
 }
