@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web.Configuration;
+using BCrypt.Net;
+using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
+using Org.BouncyCastle.Crypto.Generators;
 
 namespace BravoHub.DatabaseModule {
     public class DatabaseManager
@@ -13,7 +16,12 @@ namespace BravoHub.DatabaseModule {
 
         public DatabaseManager()
         {
+          
+
             _connectionString = WebConfigurationManager.ConnectionStrings["BravoHubConnectionString"].ConnectionString;
+
+         
+
         }
 
         public MySqlConnection GetConnection()
@@ -38,8 +46,10 @@ namespace BravoHub.DatabaseModule {
             }
         }
 
-        public UserModel GetUserByUsername(string username) {
-            try {
+        public UserModel GetUserByUsername(string username)
+        {
+            try
+            {
                 MySqlConnection conn = GetConnection();
                 conn.Open();
                 string query = "SELECT * FROM users WHERE username = @username;";
@@ -49,7 +59,8 @@ namespace BravoHub.DatabaseModule {
 
                 // Use a DataAdapter to fill the DataTable
                 UserModel user = null;
-                using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd)) {
+                using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd))
+                {
                     dataAdapter.Fill(dataTable);
                     if(dataTable.Rows.Count > 0) { 
                         user = new UserModel();
@@ -57,7 +68,7 @@ namespace BravoHub.DatabaseModule {
                         foreach (DataRow row in dataTable.Rows) {
                             // Access each field by column name or index
                             user.Username = row["username"].ToString();
-                            user.Password = row["password"].ToString();     // Alan added to get password in Admin page
+                            user.Password = row["hashedpassword"].ToString();     // Alan added to get password in Admin page
                             user.Email = row["email"].ToString();
                             user.Role = row["role"].ToString();
                         }
@@ -68,7 +79,9 @@ namespace BravoHub.DatabaseModule {
                 cmd.Dispose();
                 conn.Dispose();
                 return user;
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 return null;
             }
         }
@@ -80,15 +93,16 @@ namespace BravoHub.DatabaseModule {
                 using (var conn = GetConnection())
                 {
                     conn.Open();
-                    string query = "INSERT INTO users (username, password, email, role) VALUES (@username, @password, @email, @role)";
+                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+
+                    string query = "INSERT INTO users (username, hashedpassword, email, role) VALUES (@username, @hashedpassword, @email, @role)";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@username", username);
-                        cmd.Parameters.AddWithValue("@password", password); // Password should be hashed for security
+                        cmd.Parameters.AddWithValue("@hashedpassword", hashedPassword);
                         cmd.Parameters.AddWithValue("@email", "example@com");
                         cmd.Parameters.AddWithValue("@role", "user");
-
 
                         int result = cmd.ExecuteNonQuery();
                         return result > 0;
@@ -102,30 +116,37 @@ namespace BravoHub.DatabaseModule {
             }
         }
 
-        public bool CheckUserCredentials(UserModel user)
+        public bool CheckUserCredentials(string username, string password)
         {
             try
             {
                 using (var conn = GetConnection())
                 {
                     conn.Open();
-                    string query = "SELECT COUNT(1) FROM users WHERE username = @username AND password = @password"; // Password should ideally be hashed
+                    string query = "SELECT hashedpassword FROM users WHERE username = @username";
+
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@username", user.Username);
-                        cmd.Parameters.AddWithValue("@password", user.Password); // Password should be hashed and compared
+                        cmd.Parameters.AddWithValue("@username", username);
 
-                        int result = Convert.ToInt32(cmd.ExecuteScalar());
-                        return result > 0;
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string storedHash = reader.GetString(0);
+                                return BCrypt.Net.BCrypt.Verify(password, storedHash);
+                            }
+                        }
+
                     }
                 }
             }
             catch (Exception ex)
             {
                 // Handle exception
-                return false;
             }
+            return false;
         }
 
 
