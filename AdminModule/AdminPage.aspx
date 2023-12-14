@@ -26,8 +26,9 @@
                 </section>
                 <section runat="server" id="LogSection" class="hide-section">
                     <p id="P1" runat="server">Select a log file from the dropdown, to see its content</p>
-                    <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
-                    <textarea id="TextArea1" cols="20" rows="2"></textarea>
+                    <asp:DropDownList ID="LogFileList" runat="server" OnTextChanged="LogFileList_TextChanged"></asp:DropDownList>
+                    <asp:Button ID="Refresh" runat="server" Text="Load" />
+                    <textarea id="TextArea" cols="200" rows="20" runat="server"></textarea>
                 </section>
             </main>
             <side id="Tabs">

@@ -8,6 +8,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Google.Protobuf.WellKnownTypes;
 using BravoHub.Models;
+using BravoHub.AdminModule.Controller;
+using System.Web.UI.HtmlControls;
 
 namespace BravoHub.AdminModule
 {
@@ -36,6 +38,11 @@ namespace BravoHub.AdminModule
         private readonly string TEXTBOX_EMPTY = "Sorry, the input cannot be empty";
 
         private Tabs SelectedTab;
+        private AdminController controller;
+
+        public AdminPage() {
+            controller = new AdminController();
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -53,7 +60,6 @@ namespace BravoHub.AdminModule
                 TabDescription1.InnerText = UsersTabDescription1;
                 TabDescription2.InnerText = UsersTabDescription2;
 
-                ViewState[selectedTabKey] = Tabs.USERS;
                 UsersBtn.CssClass = "tab tab-selected";
                 MediasBtn.CssClass = "tab";
             }
@@ -116,6 +122,16 @@ namespace BravoHub.AdminModule
                 // update the sections
                 LogSection.Attributes["class"] = "show";
                 UserAndMediaSection.Attributes["class"] = "hide-section";
+
+                // load logFileNames
+                LogFileList.Items.Clear(); // necessary to avoid duplications when we change tabs
+                List<string> logFileList = controller.GetLogFileNames();
+                foreach(string logFile in logFileList) {
+                    LogFileList.Items.Add(new ListItem(logFile, logFile));
+                }
+
+                // Display the logFileContent
+                DisplayFileContent(logFileList[0]);
             }
         }
 
@@ -201,6 +217,16 @@ namespace BravoHub.AdminModule
                 PromotMsg.Text = MEDIAS_DELETED;
                 FileLogger.GetInstance().LogMessage(MEDIAS_DELETED, MessageType.INFO);
             }
+        }
+
+        protected void LogFileList_TextChanged(object sender, EventArgs e) {
+            // Display the logFileContent
+            DisplayFileContent(LogFileList.Text);
+        }
+
+        private void DisplayFileContent(string fileName) {
+            TextArea.InnerText = "";
+            TextArea.InnerText = controller.GetFileContent(fileName);
         }
     }
 }
