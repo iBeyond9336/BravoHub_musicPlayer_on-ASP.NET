@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Google.Protobuf.WellKnownTypes;
 using BravoHub.Models;
+using System.IO;
 
 namespace BravoHub.AdminModule
 {
@@ -26,19 +27,19 @@ namespace BravoHub.AdminModule
         private readonly string MediasTabDescription1 = "Section 1: You can search for any existing media file info";
         private readonly string MediasTabDescription2 = "Section 2: You can delete any existing media file";
         private readonly string selectedTabKey = "selectedTab";
-        private readonly string USER_SEARCHED = "User searched";
-        private readonly string USER_NOT_EXIST = "User is NOT existed";
-        private readonly string USER_DELETED = "User deleted";
-        private readonly string MEDIAS_SEARCHED = "Media searched";
-        private readonly string MEDIAS_DELETED = "Media deleted";
+        private readonly string USER_SEARCHED = "AdminPage - User searched";
+        private readonly string USER_NOT_EXIST = "AdminPage - User is NOT existed";
+        private readonly string USER_DELETED = "AdminPage - User deleted";
+        private readonly string MEDIAS_SEARCHED = "AdminPage - Media searched";
+        private readonly string MEDIAS_DELETED = "AdminPage - Media deleted";
         private readonly string TEXTBOX_EMPTY = "Sorry, the input cannot be empty";
 
         private Tabs SelectedTab;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // admin account : username: "Edwin", passwor: "123456"
-            string username = "Edwin";
+            // admin account : username: "AdminTest", passwor: "123"
+            string username = "AdminTest";
             UserGreeting.InnerText = $"Welcome {username}";
             if (IsPostBack)
             {
@@ -135,8 +136,16 @@ namespace BravoHub.AdminModule
             }
             else// tab is "Media"
             {
-                // to search media in DB
-                PromotMsg.Text = MEDIAS_SEARCHED;
+                // to search media
+                string rootPath = HttpContext.Current.Server.MapPath("~");
+                List<string> allFileFound = SearchFiles(rootPath, input);
+                string userFeedback = null;
+                foreach (string item in allFileFound)
+                {
+                    userFeedback += item + "<br/>";
+                }
+
+                PromotMsg.Text = userFeedback;
                 FileLogger.GetInstance().LogMessage(MEDIAS_SEARCHED, MessageType.INFO);
             }
 
@@ -180,5 +189,52 @@ namespace BravoHub.AdminModule
                 FileLogger.GetInstance().LogMessage(MEDIAS_DELETED, MessageType.INFO);
             }
         }
+
+        public static List<string> SearchFiles(string rootFolder, string targetFileName)
+        {
+            List<string> foundFiles = new List<string>();
+            Stack<string> foldersToProcess = new Stack<string>();
+
+            foldersToProcess.Push(rootFolder);      // use stack to save the file path
+
+            while (foldersToProcess.Count > 0)
+            {
+                string currentFolder = foldersToProcess.Pop(); 
+
+                try
+                {
+                    // 遍历当前文件夹中的文件
+                    // traverse file in current folder
+                    foreach (string filePath in Directory.GetFiles(currentFolder, targetFileName))
+                    {
+                        //string rootFolder = HttpContext.Current.Server.MapPath("~");
+                        string resultString = filePath.Replace(rootFolder, "");
+                        foundFiles.Add(resultString);
+                    }
+
+                    // traverse file in sub folder and save in stack 
+                    foreach (string subfolder in Directory.GetDirectories(currentFolder))
+                    {
+                        foldersToProcess.Push(subfolder);
+                    }
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    // deal with folder cannot access
+                    string error_msg = $"Access denied to folder: {currentFolder}";
+                    foundFiles.Add(error_msg);
+                }
+                catch (Exception ex)
+                {
+                    // deal with other exception
+                    string error_msg = $"Error processing folder {currentFolder}: {ex.Message}";
+                    foundFiles.Add(error_msg);
+                }
+            }
+
+            return foundFiles;
+        }
     }
+
+
 }
