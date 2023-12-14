@@ -1,4 +1,5 @@
 ﻿using System;
+using BravoHub.FileLoggerModule;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,6 +20,10 @@ namespace BravoHub.AdminModule {
         private readonly string MediasTabDescription1 = "Section 1: You can search for any existing media file info";
         private readonly string MediasTabDescription2 = "Section 2: You can delete any existing media file";
         private readonly string selectedTabKey = "selectedTab";
+        private readonly string USER_SEARCHED = "User searched";
+        private readonly string USER_DELETED = "User deleted";
+        private readonly string MEDIAS_SEARCHED = "Media searched";
+        private readonly string MEDIAS_DELETED = "Media deleted";
 
         private Tabs SelectedTab;
 
@@ -83,12 +88,14 @@ namespace BravoHub.AdminModule {
             if (TabTitle.InnerText == UsersTabTitle)
             {
                 // to search user in DB
-                PromotMsg.Text = "User searched";
+                PromotMsg.Text = USER_SEARCHED;
+                FileLogger.GetInstance().LogMessage(USER_SEARCHED, MessageType.INFO);
             }
             else// tab is "Media"
             {
                 // to search media in DB
-                PromotMsg.Text = "Media searched";
+                PromotMsg.Text = MEDIAS_SEARCHED;
+                FileLogger.GetInstance().LogMessage(MEDIAS_SEARCHED, MessageType.INFO);
             }
             
         }
@@ -101,12 +108,14 @@ namespace BravoHub.AdminModule {
             if (TabTitle.InnerText == UsersTabTitle)
             {
                 // to delete user in DB
-                PromotMsg.Text = "User deleted";
+                PromotMsg.Text = USER_DELETED;
+                FileLogger.GetInstance().LogMessage(USER_DELETED, MessageType.INFO);
             }
             else// tab is "Media"
             {
                 // to delete media in DB
-                PromotMsg.Text = "Media deleted";
+                PromotMsg.Text = MEDIAS_DELETED;
+                FileLogger.GetInstance().LogMessage(MEDIAS_DELETED, MessageType.INFO);
             }
         }
     }

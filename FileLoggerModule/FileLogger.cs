@@ -21,7 +21,8 @@ namespace BravoHub.FileLoggerModule {
         private int maxFileSize;
 
         private FileLogger() {
-            string temp = WebConfigurationManager.AppSettings["logDirPath"];
+            string temp = HttpContext.Current.Server.MapPath("~") +         // using app root path + relative path: I save log in “FileLoggerModule\logs”
+                          WebConfigurationManager.AppSettings["logDirPath"];
             dirPath = Directory.CreateDirectory($"{temp}").FullName;
             fileName = GenerateFileName();
             if (int.TryParse(WebConfigurationManager.AppSettings["maxFileSize"], out int size)) {
