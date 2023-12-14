@@ -32,8 +32,9 @@ namespace BravoHub.AdminModule
         private readonly string MediasTabDescription2 = "Section 2: You can delete any existing media file";
         private readonly string selectedTabKey = "selectedTab";
         private readonly string USER_SEARCHED = "AdminPage - User searched";
-        private readonly string USER_NOT_EXIST = "AdminPage - User is NOT existed";
+        private readonly string USER_NOT_EXIST = "AdminPage - User does NOT exist";
         private readonly string USER_DELETED = "AdminPage - User deleted";
+        private readonly string USER_NOT_DELETED = "AdminPage - User not deleted";
         private readonly string MEDIAS_SEARCHED = "AdminPage - Media searched";
         private readonly string MEDIAS_DELETED = "AdminPage - Media deleted";
         private readonly string TEXTBOX_EMPTY = "Sorry, the input cannot be empty";
@@ -149,9 +150,7 @@ namespace BravoHub.AdminModule
             // if tab is "Users"
             if (TabTitle.InnerText == UsersTabTitle)
             {
-                // to search user in DB
-                DatabaseManager db = new DatabaseManager();
-                UserModel userInfo = db.GetUserByUsername(SectionInputElement.Text);
+                UserModel userInfo = controller.GetUserByUsername(SectionInputElement.Text);
 
                 if (userInfo == null)
                 {
@@ -160,14 +159,10 @@ namespace BravoHub.AdminModule
                 }
                 else
                 {
-                    string username = userInfo.Username;
-                    string password = userInfo.Password;
-                    string email = userInfo.Email;
-                    string role = userInfo.Role;
-                    PromotMsg.Text = $"User [{username}] is found:<br/>" +
-                                     $"Password: [{password}]<br/>" +
-                                     $"Email: [{email}]<br/>" +
-                                     $"Role: [{role}]";
+                    PromotMsg.Text = $"User [{userInfo.Username}] is found:<br/>" +
+                                     $"Password: [{userInfo.Password}]<br/>" +
+                                     $"Email: [{userInfo.Email}]<br/>" +
+                                     $"Role: [{userInfo.Role}]";
                     FileLogger.GetInstance().LogMessage(USER_SEARCHED, MessageType.INFO);
                 }
 
@@ -176,7 +171,7 @@ namespace BravoHub.AdminModule
             {
                 // to search media
                 string rootPath = HttpContext.Current.Server.MapPath("~");
-                List<string> allFileFound = SearchFiles(rootPath, input);
+                List<string> allFileFound = controller.SearchFiles(rootPath, input);
                 string userFeedback = null;
                 foreach (string item in allFileFound)
                 {
@@ -191,7 +186,6 @@ namespace BravoHub.AdminModule
 
         protected void btnDeleteClicked(object sender, EventArgs e)
         {
-            string input = DeleteUserInputElement.Text;
             if (string.IsNullOrEmpty(DeleteUserInputElement.Text))
             {
                 PromotMsg.Text = TEXTBOX_EMPTY;
@@ -202,21 +196,19 @@ namespace BravoHub.AdminModule
             if (TabTitle.InnerText == UsersTabTitle)
             {
                 // to delete user in DB
-                DatabaseManager db = new DatabaseManager();
-                UserModel userInfo = db.GetUserByUsername(DeleteUserInputElement.Text);
+                UserModel userInfo = controller.GetUserByUsername(DeleteUserInputElement.Text);
 
                 if (userInfo == null)
                 {
                     PromotMsg.Text = USER_NOT_EXIST;
                     FileLogger.GetInstance().LogMessage(USER_NOT_EXIST, MessageType.ERROR);
                 }
-                else
-                {
-                    if (db.DeleteUser(input))
-                    {
-                        PromotMsg.Text = $"User [{input}] deleted";
-                        FileLogger.GetInstance().LogMessage(USER_DELETED, MessageType.INFO);
-                    }
+                else if (controller.DeleteUser(userInfo)) {
+                    PromotMsg.Text = $"User [{userInfo.Username}] deleted";
+                    FileLogger.GetInstance().LogMessage(USER_DELETED);
+                } else {
+                    PromotMsg.Text = $"User [{userInfo.Username}]could not be deleted";
+                    FileLogger.GetInstance().LogMessage(USER_NOT_DELETED, MessageType.ERROR);
                 }
 
             }
@@ -226,51 +218,6 @@ namespace BravoHub.AdminModule
                 PromotMsg.Text = MEDIAS_DELETED;
                 FileLogger.GetInstance().LogMessage(MEDIAS_DELETED, MessageType.INFO);
             }
-        }
-
-        public static List<string> SearchFiles(string rootFolder, string targetFileName)
-        {
-            List<string> foundFiles = new List<string>();
-            Stack<string> foldersToProcess = new Stack<string>();
-
-            foldersToProcess.Push(rootFolder);      // use stack to save the file path
-
-            while (foldersToProcess.Count > 0)
-            {
-                string currentFolder = foldersToProcess.Pop(); 
-
-                try
-                {
-                    // 遍历当前文件夹中的文件
-                    // traverse file in current folder
-                    foreach (string filePath in Directory.GetFiles(currentFolder, targetFileName))
-                    {
-                        //string rootFolder = HttpContext.Current.Server.MapPath("~");
-                        string resultString = filePath.Replace(rootFolder, "");
-                        foundFiles.Add(resultString);
-                    }
-
-                    // traverse file in sub folder and save in stack 
-                    foreach (string subfolder in Directory.GetDirectories(currentFolder))
-                    {
-                        foldersToProcess.Push(subfolder);
-                    }
-                }
-                catch (UnauthorizedAccessException)
-                {
-                    // deal with folder cannot access
-                    string error_msg = $"Access denied to folder: {currentFolder}";
-                    foundFiles.Add(error_msg);
-                }
-                catch (Exception ex)
-                {
-                    // deal with other exception
-                    string error_msg = $"Error processing folder {currentFolder}: {ex.Message}";
-                    foundFiles.Add(error_msg);
-                }
-            }
-
-            return foundFiles;
         }
 
         protected void LogFileList_TextChanged(object sender, EventArgs e) {
