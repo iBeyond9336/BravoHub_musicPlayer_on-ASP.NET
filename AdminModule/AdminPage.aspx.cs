@@ -10,6 +10,7 @@ namespace BravoHub.AdminModule {
     public enum Tabs {
         USERS,
         MEDIAS,
+        LOGS,
     }
 
     public partial class AdminPage : System.Web.UI.Page {
@@ -57,13 +58,18 @@ namespace BravoHub.AdminModule {
             // update the fields of the HTML page
             // update the CSS rules to make tab as selected
             if (SelectedTab != Tabs.USERS) {
-                TabTitle.InnerText = UsersTabTitle;
-                TabDescription1.InnerText = UsersTabDescription1;
-                TabDescription2.InnerText = UsersTabDescription2;
-
                 ViewState[selectedTabKey] = Tabs.USERS;
                 UsersBtn.CssClass = "tab tab-selected";
                 MediasBtn.CssClass = "tab";
+                LogsBtn.CssClass = "tab";
+
+                // update the sections
+                LogSection.Attributes["class"] = "hide-section";
+                UserAndMediaSection.Attributes["class"] = "show";
+
+                TabTitle.InnerText = UsersTabTitle;
+                TabDescription1.InnerText = UsersTabDescription1;
+                TabDescription2.InnerText = UsersTabDescription2;
             }
         }
 
@@ -71,16 +77,34 @@ namespace BravoHub.AdminModule {
             // update the fields of the HTML page
             // update the CSS rules to make tab as selected
             if (SelectedTab != Tabs.MEDIAS) {
-                TabTitle.InnerText = MediasTabTitle;
-                TabDescription1.InnerText = MediasTabDescription1;
-                TabDescription2.InnerText = MediasTabDescription2;
-
                 ViewState[selectedTabKey] = Tabs.MEDIAS;
                 UsersBtn.CssClass = "tab";
                 MediasBtn.CssClass = "tab tab-selected";
+                LogsBtn.CssClass = "tab";
+
+                // update the sections
+                LogSection.Attributes["class"] = "hide-section";
+                UserAndMediaSection.Attributes["class"] = "show";
+
+                TabTitle.InnerText = MediasTabTitle;
+                TabDescription1.InnerText = MediasTabDescription1;
+                TabDescription2.InnerText = MediasTabDescription2;
             }
         }
 
+        protected void LogsBtn_Click(object sender, EventArgs e) {
+            if(SelectedTab != Tabs.LOGS) {
+                // update the tabs
+                ViewState[selectedTabKey] = Tabs.LOGS;
+                UsersBtn.CssClass = "tab";
+                MediasBtn.CssClass = "tab";
+                LogsBtn.CssClass = "tab tab-selected";
+
+                // update the sections
+                LogSection.Attributes["class"] = "show";
+                UserAndMediaSection.Attributes["class"] = "hide-section";
+            }
+        }
 
         protected void btnSearchClicked(object sender, EventArgs e)
         {

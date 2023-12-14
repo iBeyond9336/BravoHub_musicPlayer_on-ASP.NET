@@ -93,3 +93,11 @@ input[id="LogOutBtn"] {
         background-color: var(--secondary-color);
     }
 }
+
+.hide-section {
+    display:none;
+}
+
+.show {
+    display:block;
+}

@@ -7,12 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BravoHub.AdminModule
-{
+namespace BravoHub.AdminModule {
 
 
-    public partial class AdminPage
-    {
+    public partial class AdminPage {
 
         /// <summary>
         /// form1 control.
@@ -31,6 +29,15 @@ namespace BravoHub.AdminModule
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserGreeting;
+
+        /// <summary>
+        /// UserAndMediaSection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserAndMediaSection;
 
         /// <summary>
         /// TabTitle control.
@@ -105,6 +112,33 @@ namespace BravoHub.AdminModule
         protected global::System.Web.UI.WebControls.Label PromotMsg;
 
         /// <summary>
+        /// LogSection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LogSection;
+
+        /// <summary>
+        /// P1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl P1;
+
+        /// <summary>
+        /// DropDownList1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+
+        /// <summary>
         /// UsersBtn control.
         /// </summary>
         /// <remarks>
@@ -121,6 +155,15 @@ namespace BravoHub.AdminModule
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button MediasBtn;
+
+        /// <summary>
+        /// LogsBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button LogsBtn;
 
         /// <summary>
         /// LogOutBtn control.
