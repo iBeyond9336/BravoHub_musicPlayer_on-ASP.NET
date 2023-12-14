@@ -21,9 +21,9 @@ namespace BravoHubTest {
             registerPage.SetPassword2("12345678");
             registerPage.SetButtonText("Sign Up!");
 
-            bool result = registerPage.RegisterNewUser();
+            int result = registerPage.RegisterNewUser();
 
-            ClassicAssert.IsTrue(result, "The result must be true, but it was false -> the user was not registered");
+            ClassicAssert.IsTrue(result == 0, "The result must be true, but it was false -> the user was not registered");
         }
 
         [Test]
@@ -33,9 +33,9 @@ namespace BravoHubTest {
             registerPage.SetPassword2("12345678");
             registerPage.SetButtonText("Sign Up!");
 
-            bool result = registerPage.RegisterNewUser();
+            int result = registerPage.RegisterNewUser();
 
-            ClassicAssert.IsFalse(result, "The result must be false, but it was true -> the user was registered");
+            ClassicAssert.IsFalse(result != 0, "The result must be false, but it was true -> the user was registered");
         }
 
         [Test]
@@ -45,9 +45,9 @@ namespace BravoHubTest {
             registerPage.SetPassword2("12345678");
             registerPage.SetButtonText("Sign Up!");
 
-            bool result = registerPage.RegisterNewUser();
+            int result = registerPage.RegisterNewUser();
 
-            ClassicAssert.IsFalse(result, "The result must be false, but it was true -> the user was registered");
+            ClassicAssert.IsFalse(result != 0, "The result must be false, but it was true -> the user was registered");
         }
 
         [Test]
@@ -57,9 +57,9 @@ namespace BravoHubTest {
             registerPage.SetPassword1("12345678");
             registerPage.SetButtonText("Sign Up!");
 
-            bool result = registerPage.RegisterNewUser();
+            int result = registerPage.RegisterNewUser();
 
-            ClassicAssert.IsFalse(result, "The result must be false, but it was true -> the user was registered");
+            ClassicAssert.IsFalse(result != 0, "The result must be false, but it was true -> the user was registered");
         }
 
         [Test]
@@ -70,9 +70,9 @@ namespace BravoHubTest {
             registerPage.SetPassword2("12345679");
             registerPage.SetButtonText("Sign Up!");
 
-            bool result = registerPage.RegisterNewUser();
+            int result = registerPage.RegisterNewUser();
 
-            ClassicAssert.IsFalse(result, "The result must be false, but it was true -> the user was registered");
+            ClassicAssert.IsFalse(result != 0, "The result must be false, but it was true -> the user was registered");
         }
 
         private class RegisteredPageStub : RegiterPage {
@@ -101,7 +101,7 @@ namespace BravoHubTest {
                 MainButton.Text = text;
             }
 
-            public bool RegisterNewUser() {
+            public int RegisterNewUser() {
                 return base.RegisterNewUser();
             }
         }
