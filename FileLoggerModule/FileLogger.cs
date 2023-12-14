@@ -47,7 +47,6 @@ namespace BravoHub.FileLoggerModule {
         public void LogMessage(string message, MessageType msgType = MessageType.INFO) {
             lock(_lock) {
                 string dateTimeFormatted = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                bool isCreated = false;
                 // check if the file size is almos the limit
                 // if it is over the max size then create a new file, otherwise keep using the same file
                 try {
@@ -55,17 +54,12 @@ namespace BravoHub.FileLoggerModule {
                     if (fileBytes.Length > maxFileSize) {
                         fileName = GenerateFileName();
                     }
+                    File.AppendAllText($"{dirPath}\\{fileName}", $"{dateTimeFormatted} [{msgType}]: {message}\n");
                 } catch (FileNotFoundException) {
                     // create the file
                     File.AppendAllText($"{dirPath}\\{fileName}", $"{dateTimeFormatted} [{msgType}]: {message}\n");
-                    isCreated = true;
                 } catch (Exception e) {
                     throw e;
-                }
-
-                // Log the message
-                if(!isCreated) {
-                    File.AppendAllText($"{dirPath}\\{fileName}", $"{dateTimeFormatted} [{msgType}]: {message}\n");
                 }
             }
         }

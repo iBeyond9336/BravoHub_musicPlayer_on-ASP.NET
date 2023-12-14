@@ -8,6 +8,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Google.Protobuf.WellKnownTypes;
 using BravoHub.Models;
+using BravoHub.AdminModule.Controller;
+using System.Web.UI.HtmlControls;
 using System.IO;
 
 namespace BravoHub.AdminModule
@@ -16,10 +18,12 @@ namespace BravoHub.AdminModule
     {
         USERS,
         MEDIAS,
+        LOGS,
     }
 
-    public partial class AdminPage : System.Web.UI.Page
-    {
+    public partial class AdminPage : System.Web.UI.Page {
+        private readonly string LOGIN_PAGE = "../LoginModule/LoginPage.aspx";
+
         private readonly string UsersTabTitle = "Users Tab";
         private readonly string MediasTabTitle = "Medias Tab";
         private readonly string UsersTabDescription1 = "Section 1: You can search for any existing user's info(name)";
@@ -35,6 +39,11 @@ namespace BravoHub.AdminModule
         private readonly string TEXTBOX_EMPTY = "Sorry, the input cannot be empty";
 
         private Tabs SelectedTab;
+        private AdminController controller;
+
+        public AdminPage() {
+            controller = new AdminController();
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -52,7 +61,6 @@ namespace BravoHub.AdminModule
                 TabDescription1.InnerText = UsersTabDescription1;
                 TabDescription2.InnerText = UsersTabDescription2;
 
-                ViewState[selectedTabKey] = Tabs.USERS;
                 UsersBtn.CssClass = "tab tab-selected";
                 MediasBtn.CssClass = "tab";
             }
@@ -60,24 +68,27 @@ namespace BravoHub.AdminModule
 
         }
 
-        protected void LogOutBtn_Click(object sender, EventArgs e)
-        {
-
+        protected void LogOutBtn_Click(object sender, EventArgs e) {
+            Response.Redirect(LOGIN_PAGE);
         }
 
         protected void UsersBtn_Click(object sender, EventArgs e)
         {
             // update the fields of the HTML page
             // update the CSS rules to make tab as selected
-            if (SelectedTab != Tabs.USERS)
-            {
-                TabTitle.InnerText = UsersTabTitle;
-                TabDescription1.InnerText = UsersTabDescription1;
-                TabDescription2.InnerText = UsersTabDescription2;
-
+            if (SelectedTab != Tabs.USERS) {
                 ViewState[selectedTabKey] = Tabs.USERS;
                 UsersBtn.CssClass = "tab tab-selected";
                 MediasBtn.CssClass = "tab";
+                LogsBtn.CssClass = "tab";
+
+                // update the sections
+                LogSection.Attributes["class"] = "hide-section";
+                UserAndMediaSection.Attributes["class"] = "show";
+
+                TabTitle.InnerText = UsersTabTitle;
+                TabDescription1.InnerText = UsersTabDescription1;
+                TabDescription2.InnerText = UsersTabDescription2;
             }
         }
 
@@ -85,18 +96,45 @@ namespace BravoHub.AdminModule
         {
             // update the fields of the HTML page
             // update the CSS rules to make tab as selected
-            if (SelectedTab != Tabs.MEDIAS)
-            {
-                TabTitle.InnerText = MediasTabTitle;
-                TabDescription1.InnerText = MediasTabDescription1;
-                TabDescription2.InnerText = MediasTabDescription2;
-
+            if (SelectedTab != Tabs.MEDIAS) {
                 ViewState[selectedTabKey] = Tabs.MEDIAS;
                 UsersBtn.CssClass = "tab";
                 MediasBtn.CssClass = "tab tab-selected";
+                LogsBtn.CssClass = "tab";
+
+                // update the sections
+                LogSection.Attributes["class"] = "hide-section";
+                UserAndMediaSection.Attributes["class"] = "show";
+
+                TabTitle.InnerText = MediasTabTitle;
+                TabDescription1.InnerText = MediasTabDescription1;
+                TabDescription2.InnerText = MediasTabDescription2;
             }
         }
 
+        protected void LogsBtn_Click(object sender, EventArgs e) {
+            if(SelectedTab != Tabs.LOGS) {
+                // update the tabs
+                ViewState[selectedTabKey] = Tabs.LOGS;
+                UsersBtn.CssClass = "tab";
+                MediasBtn.CssClass = "tab";
+                LogsBtn.CssClass = "tab tab-selected";
+
+                // update the sections
+                LogSection.Attributes["class"] = "show";
+                UserAndMediaSection.Attributes["class"] = "hide-section";
+
+                // load logFileNames
+                LogFileList.Items.Clear(); // necessary to avoid duplications when we change tabs
+                List<string> logFileList = controller.GetLogFileNames();
+                foreach(string logFile in logFileList) {
+                    LogFileList.Items.Add(new ListItem(logFile, logFile));
+                }
+
+                // Display the logFileContent
+                DisplayFileContent(logFileList[0]);
+            }
+        }
 
         protected void btnSearchClicked(object sender, EventArgs e)
         {
@@ -234,7 +272,15 @@ namespace BravoHub.AdminModule
 
             return foundFiles;
         }
+
+        protected void LogFileList_TextChanged(object sender, EventArgs e) {
+            // Display the logFileContent
+            DisplayFileContent(LogFileList.Text);
+        }
+
+        private void DisplayFileContent(string fileName) {
+            TextArea.InnerText = "";
+            TextArea.InnerText = controller.GetFileContent(fileName);
+        }
     }
-
-
 }
