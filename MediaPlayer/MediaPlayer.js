@@ -1,13 +1,4 @@
-<<<<<<< Updated upstream
-﻿// fet the main background
-var body = document.getElementById('body');
-// get media object
-var audio = document.getElementById('audioTag');
 
-// music name
-var musicTitle = document.getElementById('music-title');
-// music poster
-=======
 ﻿// get main background
 var body = document.getElementById('body');
 // Get the audio player object
@@ -16,24 +7,18 @@ var audio = document.getElementById('audioTag');
 // music title
 var musicTitle = document.getElementById('music-title');
 // record image
->>>>>>> Stashed changes
 var recordImg = document.getElementById('record-img');
 // artist
 var author = document.getElementById('author-name');
 
 // progress bar
 var progress = document.getElementById('progress');
-<<<<<<< Updated upstream
-// progress-total
-=======
 // progress total
->>>>>>> Stashed changes
 var progressTotal = document.getElementById('progress-total');
 
 // played time
 var playedTime = document.getElementById('playedTime');
-<<<<<<< Updated upstream
-// suto time
+// audio time
 var audioTime = document.getElementById('audioTime');
 
 // playmode
@@ -44,8 +29,6 @@ var skipForward = document.getElementById('skipForward');
 var pause = document.getElementById('playPause');
 // backward
 var skipBackward = document.getElementById('skipBackward');
-// volume
-=======
 // total time
 var audioTime = document.getElementById('audioTime');
 
@@ -58,36 +41,23 @@ var pause = document.getElementById('playPause');
 // last
 var skipBackward = document.getElementById('skipBackward');
 // volume adjust
->>>>>>> Stashed changes
 var volume = document.getElementById('volume');
 // volume slider
 var volumeTogger = document.getElementById('volumn-togger');
 
-<<<<<<< Updated upstream
-// list
-=======
 // music list
->>>>>>> Stashed changes
 var list = document.getElementById('list');
 // speed
 var speed = document.getElementById('speed');
 // MV
 var MV = document.getElementById('MV');
 
-<<<<<<< Updated upstream
 // close-list
-=======
-// close list
->>>>>>> Stashed changes
 var closeList = document.getElementById('close-list');
 // music list
 var musicList = document.getElementById('music-list');
 
-<<<<<<< Updated upstream
-// play/pause function
-=======
 // play/pause mode
->>>>>>> Stashed changes
 pause.onclick = function (e) {
     if (audio.paused) {
         audio.play();
@@ -102,11 +72,7 @@ pause.onclick = function (e) {
     }
 }
 
-<<<<<<< Updated upstream
-// update progress
-=======
 // update the progress bar
->>>>>>> Stashed changes
 audio.addEventListener('timeupdate', updateProgress); // Monitor the audio playback time and update the progress bar
 function updateProgress() {
     var value = audio.currentTime / audio.duration;
