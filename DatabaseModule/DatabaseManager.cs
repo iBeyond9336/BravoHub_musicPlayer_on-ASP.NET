@@ -51,13 +51,15 @@ namespace BravoHub.DatabaseModule {
                 UserModel user = null;
                 using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd)) {
                     dataAdapter.Fill(dataTable);
-                    user = new UserModel();
-                    // Now, iterate through the DataTable rows
-                    foreach (DataRow row in dataTable.Rows) {
-                        // Access each field by column name or index
-                        user.Username = row["username"].ToString();
-                        user.Email = row["email"].ToString();
-                        user.Role = row["role"].ToString();
+                    if(dataTable.Rows.Count > 0) { 
+                        user = new UserModel();
+                        // Now, iterate through the DataTable rows
+                        foreach (DataRow row in dataTable.Rows) {
+                            // Access each field by column name or index
+                            user.Username = row["username"].ToString();
+                            user.Email = row["email"].ToString();
+                            user.Role = row["role"].ToString();
+                        }
                     }
                 }
 
