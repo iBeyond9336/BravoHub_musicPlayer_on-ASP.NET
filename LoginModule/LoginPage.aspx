@@ -37,17 +37,11 @@
                 <div class="greeting1" id="neon">
 
                     <h4>Let us to help you explore your journey</h4>
-<<<<<<< Updated upstream
-                <div class="socialmedia">
-                    <div class="a"><a href="https://www.facebook.com/ConestogaCollege/">Facebook</a></div>
-                    <div class="a"><a href="https://conestoga.desire2learn.com/d2l/home">eConestoga</a></div>
-               </div>   
-=======
                     <div class="socialmedia">
                         <div class="a"><a href="https://www.facebook.com/ConestogaCollege/">Facebook</a></div>
                         <div class="a"><a href="https://conestoga.desire2learn.com/d2l/home">eConestoga</a></div>
                     </div>
->>>>>>> Stashed changes
+
                 </div>
             </div>
             <div class="right_panel">
@@ -70,7 +64,7 @@
                     <span></span>
 
                     <div class="remember">
-                        <input type="checkbox" id="rememberme" runat="server"/>
+                        <input type="checkbox" id="rememberme" runat="server" />
                         <label for="rememberme">Remember me</label>
                     </div>
                     <div class="footer" id="neon1">

@@ -51,15 +51,6 @@ namespace BravoHub
         protected global::System.Web.UI.WebControls.Button login_button;
 
         /// <summary>
-        /// admin_button control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button admin_button;
-
-        /// <summary>
         /// userFeedback control.
         /// </summary>
         /// <remarks>

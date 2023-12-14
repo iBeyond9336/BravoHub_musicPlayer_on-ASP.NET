@@ -38,11 +38,11 @@ namespace BravoHub {
         }
 
         protected void login_button_Click(object sender, EventArgs e) {
-            int result = controller.CheckCredentials(LoginUsername.Value, LoginPassword.Value);
+            int result = controller.CheckCredentials(LoginUsername.Value, LoginPassword.Value);     // check if user exist in DB
             switch(result) {
                 case 0:
-                    userFeedback.InnerText = ERROR_MSG_INPUT;
-                    FileLogger.GetInstance().LogMessage(ERROR_MSG_INPUT, MessageType.ERROR);
+                    userFeedback.InnerText = ERROR_MSG_INPUT;                                       // prompt user feedback
+                    FileLogger.GetInstance().LogMessage(ERROR_MSG_INPUT, MessageType.ERROR);        // log feedback 
                     break;
                 case 1:
                     FileLogger.GetInstance().LogMessage(VALID_USER);
