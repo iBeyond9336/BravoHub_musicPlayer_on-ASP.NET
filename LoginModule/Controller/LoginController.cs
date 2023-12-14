@@ -29,7 +29,7 @@ namespace BravoHub.LoginModule.Controller {
             user.Username = username;
             user.Password = password;
 
-            bool result = databaseManager.CheckUserCredentials(user);
+            bool result = databaseManager.CheckUserCredentials(user.Username, user.Password);
             return result ? 1 : 2;
         }
 
