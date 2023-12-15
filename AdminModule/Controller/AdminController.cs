@@ -28,6 +28,8 @@ namespace BravoHub.AdminModule.Controller {
             return File.ReadAllText($"{LOGS_DIR}\\{logFileName}");
         }
 
+
+
         public List<string> SearchFiles(string rootFolder, string targetFileName) {
             List<string> foundFiles = new List<string>();
             Stack<string> foldersToProcess = new Stack<string>();
@@ -38,7 +40,6 @@ namespace BravoHub.AdminModule.Controller {
                 string currentFolder = foldersToProcess.Pop();
 
                 try {
-                    // 遍历当前文件夹中的文件
                     // traverse file in current folder
                     foreach (string filePath in Directory.GetFiles(currentFolder, targetFileName)) {
                         //string rootFolder = HttpContext.Current.Server.MapPath("~");
