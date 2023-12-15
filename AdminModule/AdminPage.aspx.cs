@@ -173,6 +173,10 @@ namespace BravoHub.AdminModule
                 string rootPath = HttpContext.Current.Server.MapPath("~");
                 List<string> allFileFound = controller.SearchFiles(rootPath, input);
                 string userFeedback = null;
+                if (allFileFound.Count == 0)
+                {
+                    userFeedback = "File not found";
+                }
                 foreach (string item in allFileFound)
                 {
                     userFeedback += item + "<br/>";
