@@ -25,10 +25,13 @@
                     <asp:Label ID="PromotMsg" runat="server" ForeColor="Yellow"/>
                 </section>
                 <section runat="server" id="LogSection" class="hide-section">
+                    <h2 id="LogSectionTitle" runat="server">Logs</h2>
                     <p id="P1" runat="server">Select a log file from the dropdown, to see its content</p>
-                    <asp:DropDownList ID="LogFileList" runat="server" OnTextChanged="LogFileList_TextChanged"></asp:DropDownList>
-                    <asp:Button ID="Refresh" runat="server" Text="Load" />
-                    <textarea id="TextArea" cols="200" rows="20" runat="server"></textarea>
+                    <div class="selection-section">
+                        <asp:DropDownList ID="LogFileList" runat="server" OnTextChanged="LogFileList_TextChanged"></asp:DropDownList>
+                        <asp:Button ID="Refresh" runat="server" Text="Load" />
+                    </div>
+                    <textarea id="TextArea" runat="server"></textarea>
                 </section>
             </main>
             <side id="Tabs">
