@@ -12,8 +12,9 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('../img/1.gif');
+    background-image: url('../img/1.jpg');
     position: relative;
+    
 }
 
 .login {
