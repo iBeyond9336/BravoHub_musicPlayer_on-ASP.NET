@@ -122,7 +122,7 @@ namespace BravoHub.AdminModule
                 LogsBtn.CssClass = "tab tab-selected";
 
                 // update the sections
-                LogSection.Attributes["class"] = "show";
+                LogSection.Attributes["class"] = "show-log-section";
                 UserAndMediaSection.Attributes["class"] = "hide-section";
 
                 // load logFileNames

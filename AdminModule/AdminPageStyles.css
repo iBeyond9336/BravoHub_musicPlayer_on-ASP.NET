@@ -101,3 +101,17 @@ input[id="LogOutBtn"] {
 .show {
     display:block;
 }
+
+.show-log-section {
+    display:flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+div[class="selection-section"] {
+    margin: 10px 0;
+}
+
+#TextArea {
+    flex-basis: 50%;
+}
