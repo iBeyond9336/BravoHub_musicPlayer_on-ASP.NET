@@ -242,12 +242,12 @@ speed.addEventListener('click', function (event) {
 });
 
 // video player
-MV.addEventListener('click', function (event) {
-    // open new window
-    var storage_list = window.sessionStorage;
-    storage_list['musicId'] = musicId;
-    window.open("video.html");
-});
+//MV.addEventListener('click', function (event) {
+//    // open new window
+//    var storage_list = window.sessionStorage;
+//    storage_list['musicId'] = musicId;
+//    window.open("video.html");
+//});
 
 // hard coded to generate the music list`
 document.getElementById("music0").addEventListener('click', function (event) {
