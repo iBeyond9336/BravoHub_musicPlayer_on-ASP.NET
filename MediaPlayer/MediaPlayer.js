@@ -43,7 +43,7 @@ var skipBackward = document.getElementById('skipBackward');
 // volume adjust
 var volume = document.getElementById('volume');
 // volume slider
-var volumeTogger = document.getElementById('volumn-togger');
+var volumeTogger = document.getElementById('volume-togger');
 
 // music list
 var list = document.getElementById('list');
@@ -242,12 +242,12 @@ speed.addEventListener('click', function (event) {
 });
 
 // video player
-MV.addEventListener('click', function (event) {
-    // open new window
-    var storage_list = window.sessionStorage;
-    storage_list['musicId'] = musicId;
-    window.open("video.html");
-});
+//MV.addEventListener('click', function (event) {
+//    // open new window
+//    var storage_list = window.sessionStorage;
+//    storage_list['musicId'] = musicId;
+//    window.open("video.html");
+//});
 
 // hard coded to generate the music list`
 document.getElementById("music0").addEventListener('click', function (event) {
@@ -287,27 +287,27 @@ function rotateRecordStop() {
 }
 
 // store last volume
-var lastVolumn = 70
+var lastVolume = 70
 
 // slider for volume
-audio.addEventListener('timeupdate', updateVolumn);
-function updateVolumn() {
+audio.addEventListener('timeupdate', updateVolume);
+function updateVolume() {
     audio.volume = volumeTogger.value / 70;
 }
 
 // click to set volume
-volume.addEventListener('click', setNoVolumn);
-function setNoVolumn() {
+volume.addEventListener('click', setNoVolume);
+function setNoVolume() {
     if (volumeTogger.value == 0) {
-        if (lastVolumn == 0) {
-            lastVolumn = 70;
+        if (lastVolume == 0) {
+            lastVolume = 70;
         }
-        volumeTogger.value = lastVolumn;
-        volume.style.backgroundImage = "url('./img/音量.png')";
+        volumeTogger.value = lastVolume;
+        volume.style.backgroundImage = "url('./img/volume.png')";
     }
     else {
-        lastVolumn = volumeTogger.value;
+        lastVolume = volumeTogger.value;
         volumeTogger.value = 0;
-        volume.style.backgroundImage = "url('./img/静音.png')";
+        volume.style.backgroundImage = "url('./img/mute.png')";
     }
 }

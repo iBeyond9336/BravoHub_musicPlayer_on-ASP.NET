@@ -23,7 +23,7 @@ body {
     height: 80%;
 }
 
-/* 实现唱片效果 */
+/* record background */
 .record-container {
     width: 50%;
     height: 100%;
@@ -90,14 +90,14 @@ body {
     width: 100%;
 }
 
-/* 播放器样式设置*/
+/* media player*/
 .audio-box {
     width: 100%;
     height: 20%;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* 设置超出部分隐藏，方便改变图标颜色 */
+    /* if overflow, hide it */
     overflow: hidden;
 }
 
@@ -105,7 +105,7 @@ body {
     width: 90%;
 }
 
-/* 进度条样式 */
+/* progress bar */
 .a-progress {
     width: 100%;
     color: #42b680;
@@ -152,12 +152,12 @@ body {
     border-radius: 10px;
 }
 
-/* 下排控制按钮样式*/
+/* bottom lines*/
 .a-controls {
     width: 100%;
 }
 
-/* 时间样式 */
+/* time display */
 .time-container {
     width: 30%;
     float: left;
@@ -176,7 +176,7 @@ body {
     text-align: right;
 }
 
-/* 中间部分按钮 */
+/* middle buttons */
 .center-button-container {
     width: 40%;
     float: left;
@@ -207,7 +207,7 @@ body {
 }
 
 .s-left {
-    background-image: url("./img/下一首.png");
+    background-image: url("./img/next.png");
     background-size: 100% 100%;
 }
 
@@ -215,7 +215,7 @@ body {
     float: left;
     width: 50px;
     height: 50px;
-    background-image: url("./img/继续播放.png");
+    background-image: url("./img/play.png");
     background-size: 100% 100%;
 }
 
@@ -223,21 +223,21 @@ body {
     float: left;
     width: 50px;
     height: 50px;
-    background-image: url("./img/暂停.png");
+    background-image: url("./img/pause.png");
     background-size: 100% 100%;
 }
 
 .s-right {
-    background-image: url("./img/上一首.png");
+    background-image: url("./img/last.png");
     background-size: 100% 100%;
 }
 
 .volume {
-    background-image: url("./img/音量.png");
+    background-image: url("./img/volume.png");
     background-size: 100% 100%;
 }
 
-/* 尾部按钮 */
+/* bottom left buttons */
 .bottom-button-container {
     width: 30%;
     padding-top: 10px;
@@ -285,11 +285,11 @@ body {
     }
 
 .list {
-    background-image: url("./img/列表.png");
+    background-image: url("./img/list.png");
     background-size: 100% 100%;
 }
 
-/* 音乐列表 */
+/* music list */
 .close-list {
     display: none;
     position: fixed;
@@ -391,7 +391,7 @@ body {
     }
 }
 
-/*横条样式*/
+/*slide bar*/
 #volumn-togger {
     width: 100px;
     height: 2px;
@@ -403,7 +403,7 @@ body {
     box-shadow: inset 0 0 5px rgb(91, 91, 91);
 }
 
-    /*拖动块的样式*/
+    /*togger*/
     #volumn-togger::-webkit-slider-thumb {
         -webkit-appearance: none;
         width: 1px;
