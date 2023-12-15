@@ -307,7 +307,7 @@ function setNoVolume() {
     }
     else {
         lastVolume = volumeTogger.value;
-        volumeTogger.value == 0;
+        volumeTogger.value = 0;
         volume.style.backgroundImage = "url('./img/mute.png')";
     }
 }
